@@ -16,7 +16,7 @@ public class Test {
     @GenericGenerator(name="increment", strategy = "increment")
     private Long id;
 
-    private String name;
+    private String name2;
 
     private String xyz;
 
@@ -28,12 +28,12 @@ public class Test {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getName2() {
+        return name2;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName2(String name) {
+        this.name2 = name;
     }
 
     public String getXyz() {
