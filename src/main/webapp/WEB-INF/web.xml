@@ -1,21 +1,47 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
 
+  <display-name>ParadiseTravels Maven Webapp</display-name>
 
+  <welcome-file-list>
+    <welcome-file>/index.jsp</welcome-file>
+  </welcome-file-list>
 
-<web-app>
+  <!--filter check exist session for sign in-->
+  <filter>
+    <filter-name>AuthFilter</filter-name>
+    <filter-class>paradiseTravels.servlets.filter.AuthFilter</filter-class>
+  </filter>
 
-  <display-name>Archetype Created Web Application</display-name>
+  <filter-mapping>
+    <filter-name>AuthFilter</filter-name>
+    <url-pattern>/menu</url-pattern>
+    <url-pattern>/login</url-pattern>
+  </filter-mapping>
 
+  <!--Register servlet-->
   <servlet>
-    <servlet-name>ss</servlet-name>
-    <servlet-class>paradiseTravels.Servlet</servlet-class>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>paradiseTravels.servlets.servlet.RegisterServlet</servlet-class>
   </servlet>
-  
+
   <servlet-mapping>
-    <servlet-name>ss</servlet-name>
-    <url-pattern>/test</url-pattern>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/register</url-pattern>
   </servlet-mapping>
-  
+
+  <!--Logout servlet-->
+  <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>paradiseTravels.servlets.servlet.LogoutServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+
 </web-app>

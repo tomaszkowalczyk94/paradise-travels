@@ -1,0 +1,42 @@
+create table if not exists address
+(
+	id serial not null
+		constraint address_pkey
+			primary key,
+	address varchar not null,
+	zip integer not null,
+	city varchar not null,
+	region varchar,
+	country varchar(15) not null
+)
+;
+
+create table if not exists users
+(
+	id integer default nextval('users_id_sequence'::regclass) not null
+		constraint users_pkey
+			primary key,
+	firstname varchar,
+	lastname varchar,
+	address_id integer not null
+		constraint users_address_id_fk
+			references address,
+	email varchar not null,
+	login varchar not null,
+	password varchar not null,
+	role varchar(5) not null
+)
+;
+
+create unique index if not exists users_id_uindex
+	on users (id)
+;
+
+create unique index if not exists users_login_uindex
+	on users (login)
+;
+
+create unique index if not exists address_id_uindex
+	on address (id)
+;
+
