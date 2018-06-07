@@ -15,7 +15,7 @@ public class UsersDAO {
 
     public boolean findByLogin(String login) {
         try {
-            User  user = (User) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("FROM Users WHERE login='"+login+"'").uniqueResult();
+            User  user = (User) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("FROM User WHERE login='"+login+"'").uniqueResult();
             return user.getLogin().equals(login);
         }catch (Exception e){
             return false;
@@ -48,7 +48,7 @@ public class UsersDAO {
     }
 
     public List<User> findAll() {
-        List<User> users = (List<User>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From Users").list();
+        List<User> users = (List<User>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From User").list();
         return users;
     }
 
@@ -56,7 +56,7 @@ public class UsersDAO {
 
     public User findByLoginPassword(String login, String password) {
         try {
-            User user = (User) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("FROM Users WHERE login like'" + login + "' AND password like '" + password + "'").uniqueResult();
+            User user = (User) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("FROM User WHERE login like'" + login + "' AND password like '" + password + "'").uniqueResult();
             return user;
         }catch (Exception e){
             return null;
