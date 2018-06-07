@@ -1,6 +1,6 @@
 package paradiseTravels.dao;
 
-import paradiseTravels.model.Users;
+import paradiseTravels.model.User;
 import paradiseTravels.servlets.HibernateSessionFactoryUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -8,13 +8,14 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class UsersDAO {
-    public Users findById(int id) {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Users.class, id);
+
+    public User findById(int id) {
+        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(User.class, id);
     }
 
     public boolean findByLogin(String login) {
         try {
-            Users  user = (Users) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("FROM Users WHERE login='"+login+"'").uniqueResult();
+            User  user = (User) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("FROM Users WHERE login='"+login+"'").uniqueResult();
             return user.getLogin().equals(login);
         }catch (Exception e){
             return false;
@@ -22,7 +23,7 @@ public class UsersDAO {
 
     }
 
-    public void save(Users user) {
+    public void save(User user) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.save(user);
@@ -30,7 +31,7 @@ public class UsersDAO {
         session.close();
     }
 
-    public void update(Users user) {
+    public void update(User user) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.update(user);
@@ -38,7 +39,7 @@ public class UsersDAO {
         session.close();
     }
 
-    public void delete(Users user) {
+    public void delete(User user) {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
         session.delete(user);
@@ -46,16 +47,16 @@ public class UsersDAO {
         session.close();
     }
 
-    public List<Users> findAll() {
-        List<Users> users = (List<Users>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From Users").list();
+    public List<User> findAll() {
+        List<User> users = (List<User>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From Users").list();
         return users;
     }
 
 
 
-    public Users findByLoginPassword(String login, String password) {
+    public User findByLoginPassword(String login, String password) {
         try {
-            Users user = (Users) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("FROM Users WHERE login='" + login + "' AND password='" + password + "'").uniqueResult();
+            User user = (User) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("FROM Users WHERE login like'" + login + "' AND password like '" + password + "'").uniqueResult();
             return user;
         }catch (Exception e){
             return null;

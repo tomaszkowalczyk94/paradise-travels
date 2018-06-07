@@ -18,30 +18,28 @@
 
   <filter-mapping>
     <filter-name>AuthFilter</filter-name>
-    <url-pattern>/menu</url-pattern>
-    <url-pattern>/login</url-pattern>
+    <url-pattern>/restricted/*</url-pattern>
   </filter-mapping>
 
-  <!--Register servlet-->
-  <servlet>
-    <servlet-name>RegisterServlet</servlet-name>
-    <servlet-class>paradiseTravels.servlets.servlet.RegisterServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>jersey-serlvet</servlet-name>
+        <servlet-class>
+            com.sun.jersey.spi.container.servlet.ServletContainer
+        </servlet-class>
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>paradiseTravels.servlets</param-value>
+        </init-param>
+        <init-param>
+            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>RegisterServlet</servlet-name>
-    <url-pattern>/register</url-pattern>
-  </servlet-mapping>
-
-  <!--Logout servlet-->
-  <servlet>
-    <servlet-name>LogoutServlet</servlet-name>
-    <servlet-class>paradiseTravels.servlets.servlet.LogoutServlet</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>LogoutServlet</servlet-name>
-    <url-pattern>/logout</url-pattern>
-  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>jersey-serlvet</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
 
 </web-app>

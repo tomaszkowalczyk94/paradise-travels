@@ -1,12 +1,11 @@
 package paradiseTravels.servlets.servlet;
 
 import paradiseTravels.model.Address;
-import paradiseTravels.model.Users;
+import paradiseTravels.model.User;
 import paradiseTravels.services.AddressService;
-import paradiseTravels.services.UsersService;
+import paradiseTravels.services.user.UsersService;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,7 +38,7 @@ public class RegisterServlet extends HttpServlet {
             Address address_user = new Address(address,zip,city,region,country);
             adr_service.saveAddress(address_user);
 
-            Users user = new Users(firstName,lastName,address_user.getId(), email, login, password,"user");
+            User user = new User(firstName,lastName,address_user.getId(), email, login, password,"user");
             service.saveUser(user);
 
             response.sendRedirect("/menu?userAdded");
