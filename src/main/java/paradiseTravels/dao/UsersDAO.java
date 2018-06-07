@@ -5,8 +5,10 @@ import paradiseTravels.servlets.HibernateSessionFactoryUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.ejb.Stateless;
 import java.util.List;
 
+@Stateless
 public class UsersDAO {
 
     public User findById(int id) {
