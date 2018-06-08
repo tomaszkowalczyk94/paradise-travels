@@ -3,8 +3,11 @@ package paradiseTravels.servlets.servlet;
 import paradiseTravels.model.Address;
 import paradiseTravels.model.User;
 import paradiseTravels.services.AddressService;
-import paradiseTravels.services.user.UsersService;
+import paradiseTravels.services.user.AuthBean;
+import paradiseTravels.services.user.UserBean;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +17,7 @@ import java.io.IOException;
 
 @WebServlet(name = "RegisterServlet")
 public class RegisterServlet extends HttpServlet {
-    private UsersService service = new UsersService();
+    private UserBean service = new UserBean();
     private AddressService adr_service = new AddressService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,6 +53,7 @@ public class RegisterServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         System.out.println("********Register Servlet doGet***********");
         request.getRequestDispatcher("/register.jsp").forward(request, response);
     }

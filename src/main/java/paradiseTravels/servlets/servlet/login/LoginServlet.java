@@ -1,25 +1,23 @@
 package paradiseTravels.servlets.servlet.login;
 
-import com.google.gson.Gson;
-import paradiseTravels.services.user.UsersService;
+import paradiseTravels.services.user.AuthBean;
+import paradiseTravels.services.user.UserBean;
 import paradiseTravels.services.user.exception.InvalidCredentialsException;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @Path("login")
 public class LoginServlet{
 
-    private UsersService usersService = new UsersService();
+    private UserBean userBean = new UserBean();
 
     public static class LoginResult {
         private boolean result;
@@ -42,6 +40,9 @@ public class LoginServlet{
         }
     }
 
+    @Inject
+    AuthBean authBean;
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -49,8 +50,9 @@ public class LoginServlet{
 
         LoginResult loginResult = new LoginResult();
 
+        authBean.getUsersDAO().findAll();
         try {
-            usersService.loginUser(request.getSession(),loginRequest.login, loginRequest.password );
+            userBean.loginUser(request.getSession(),loginRequest.login, loginRequest.password );
             loginResult.setResult(true);
             loginResult.setMsg("zalogowano");
 
@@ -61,6 +63,5 @@ public class LoginServlet{
 
             return Response.status(400).entity(loginResult).build();
         }
-
     }
 }

@@ -4,15 +4,17 @@ import paradiseTravels.dao.UsersDAO;
 import paradiseTravels.model.User;
 import paradiseTravels.services.user.exception.InvalidCredentialsException;
 
+import javax.enterprise.context.RequestScoped;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
-public class UsersService {
+
+public class UserBean {
 
     private UsersDAO usersDao = new UsersDAO();
 
-    public UsersService() {
+    public UserBean() {
     }
 
     public User findUser(int id) {

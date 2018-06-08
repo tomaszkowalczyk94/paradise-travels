@@ -2,7 +2,7 @@ package paradiseTravels.servlets.filter;
 
 import com.google.gson.Gson;
 import paradiseTravels.model.User;
-import paradiseTravels.services.user.UsersService;
+import paradiseTravels.services.user.UserBean;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class AuthFilter implements Filter {
 
-    final UsersService service = new UsersService();
+    final UserBean service = new UserBean();
 
     public static class Unauthorized {
         String message = "musisz się zalogować";
