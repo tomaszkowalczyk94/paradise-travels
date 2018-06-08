@@ -10,7 +10,7 @@ public class AddressDAO {
     public Integer getAddressId(Address address){
         Integer id  = ((Address) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery(
                 "FROM Address WHERE address='" + address.getAddress() +
-                        "' AND zip='" + address.getZip().toString() +
+                        "' AND zip='" + address.getPostalCode().toString() +
                         "' AND city='" + address.getCity() +
                         "' AND region='" + address.getRegion() +
                         "' AND country='" + address.getCountry() +

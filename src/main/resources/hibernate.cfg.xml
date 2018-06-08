@@ -30,5 +30,11 @@
         <!-- Names the annotated entity class -->
         <mapping class="paradiseTravels.model.User"/>
         <mapping class="paradiseTravels.model.Address"/>
+        <mapping class="paradiseTravels.model.Hotel"/>
+        <mapping class="paradiseTravels.model.Review"/>
+        <mapping class="paradiseTravels.model.Room"/>
+        <mapping class="paradiseTravels.model.LocalJourney"/>
+        <mapping class="paradiseTravels.model.Facility"/>
+        <mapping class="paradiseTravels.model.Reservation"/>
     </session-factory>
 </hibernate-configuration>

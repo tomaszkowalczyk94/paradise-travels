@@ -27,7 +27,7 @@ public class RegisterServlet extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
-        Integer zip = Integer.parseInt(request.getParameter("zip"));
+        String zip = request.getParameter("zip");
         String city = request.getParameter("city");
         String region = request.getParameter("region");
         String country = request.getParameter("country");
@@ -35,10 +35,10 @@ public class RegisterServlet extends HttpServlet {
 
         if(password.equals(confirmPassword)){
 
-            Address address_user = new Address(address,zip,city,region,country);
-            adr_service.saveAddress(address_user);
+            Address userAddress = new Address(address,zip,city,region,country);
+            adr_service.saveAddress(userAddress);
 
-            User user = new User(firstName,lastName,address_user.getId(), email, login, password,"user");
+            User user = new User(firstName,lastName,userAddress, email, login, password,"user");
             service.saveUser(user);
 
             response.sendRedirect("/menu?userAdded");
