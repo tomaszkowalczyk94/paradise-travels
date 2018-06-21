@@ -9,12 +9,11 @@ public class Address implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Column (name = "id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    //można nie podawać Column name, jeżeli ono jest takie same jak nazwa columny w tabeli
     private String address;
-    private Integer zip;
+    private String postalCode;
     private String city;
     private String region;
     private String country;
@@ -22,9 +21,9 @@ public class Address implements Serializable {
     public Address (){
     }
 
-    public Address(String address, Integer zip, String city, String region, String country) {
+    public Address(String address, String postalCode, String city, String region, String country) {
         this.address = address;
-        this.zip = zip;
+        this.postalCode = postalCode;
         this.city = city;
         this.region = region;
         this.country = country;
@@ -46,12 +45,12 @@ public class Address implements Serializable {
         this.address = address;
     }
 
-    public Integer getZip() {
-        return zip;
+    public String getPostalCode() {
+        return postalCode;
     }
 
-    public void setZip(Integer zip) {
-        this.zip = zip;
+    public void setPostalCode(String zip) {
+        this.postalCode = zip;
     }
 
     public String getCity() {
@@ -83,7 +82,7 @@ public class Address implements Serializable {
         return "Address{" +
                 "id=" + id +
                 ", address='" + address + '\'' +
-                ", zip=" + zip +
+                ", zip=" + postalCode +
                 ", city='" + city + '\'' +
                 ", region='" + region + '\'' +
                 ", country='" + country + '\'' +

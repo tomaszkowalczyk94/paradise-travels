@@ -15,25 +15,21 @@ public class User implements Serializable {
     //można nie podawać Column name, jeżeli ono jest takie same jak nazwa columny w tabeli
     private String firstName;
     private String lastName;
-    private Integer address_id;
+    //wiele userow ma ten sam adres
+    @ManyToOne
+    private Address address;
     private String email;
-
-    @Column(name = "login")
     private String login;
-
-    @Column(name = "password")
     private String password;
-
-    @Column(name = "role")
     private String role;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, Integer address_id, String email, String login, String password, String role) {
+    public User(String firstName, String lastName, Address address, String email, String login, String password, String role) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.address_id = address_id;
+        this.address = address;
         this.email = email;
         this.login = login;
         this.password = password;
@@ -64,12 +60,12 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public Integer getAddress_id() {
-        return address_id;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddress_id(Integer address_id) {
-        this.address_id = address_id;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getEmail() {
