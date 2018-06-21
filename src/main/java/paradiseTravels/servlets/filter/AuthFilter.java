@@ -2,7 +2,7 @@ package paradiseTravels.servlets.filter;
 
 import com.google.gson.Gson;
 import paradiseTravels.model.User;
-import paradiseTravels.services.user.UserBean;
+import paradiseTravels.bean.user.UserBean;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

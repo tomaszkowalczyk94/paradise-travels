@@ -11,6 +11,7 @@ import java.io.IOException;
  * Logout.
  * Delete session.
  */
+@Deprecated
 public class LogoutServlet extends HttpServlet {
 
     @Override

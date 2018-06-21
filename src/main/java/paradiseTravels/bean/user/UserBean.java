@@ -1,15 +1,15 @@
-package paradiseTravels.services.user;
+package paradiseTravels.bean.user;
 
 import paradiseTravels.dao.UsersDAO;
 import paradiseTravels.model.User;
-import paradiseTravels.services.user.exception.InvalidCredentialsException;
+import paradiseTravels.bean.user.exception.InvalidCredentialsException;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
-
+@ApplicationScoped
 public class UserBean {
 
     private UsersDAO usersDao = new UsersDAO();
@@ -42,13 +42,6 @@ public class UserBean {
         else return false;
     }
 
-    public void loginUser(HttpSession session, String login, String password) throws InvalidCredentialsException {
-        User user = usersDao.findByLoginPassword(login,password);
 
-        if(user == null) {
-            throw new InvalidCredentialsException();
-        }
-        session.setAttribute("user", user);
-    }
 
 }

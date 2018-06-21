@@ -1,4 +1,4 @@
-package paradiseTravels.services;
+package paradiseTravels.bean;
 
 import paradiseTravels.dao.AddressDAO;
 import paradiseTravels.model.Address;

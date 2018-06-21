@@ -1,10 +1,10 @@
-package paradiseTravels.servlets.servlet.login;
+package paradiseTravels.service.user.login;
 
-import paradiseTravels.services.user.AuthBean;
-import paradiseTravels.services.user.UserBean;
-import paradiseTravels.services.user.exception.InvalidCredentialsException;
+import paradiseTravels.bean.user.AuthBean;
+import paradiseTravels.bean.user.UserBean;
+import paradiseTravels.bean.user.exception.InvalidCredentialsException;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +15,7 @@ import javax.ws.rs.core.Response;
 import java.io.IOException;
 
 @Path("login")
-public class LoginServlet{
-
-    private UserBean userBean = new UserBean();
+public class LoginService {
 
     public static class LoginResult {
         private boolean result;
@@ -50,9 +48,8 @@ public class LoginServlet{
 
         LoginResult loginResult = new LoginResult();
 
-        authBean.getUsersDAO().findAll();
         try {
-            userBean.loginUser(request.getSession(),loginRequest.login, loginRequest.password );
+            authBean.loginUser(request.getSession(),loginRequest.login, loginRequest.password );
             loginResult.setResult(true);
             loginResult.setMsg("zalogowano");
 

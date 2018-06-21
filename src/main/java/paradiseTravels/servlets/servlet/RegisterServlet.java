@@ -1,13 +1,12 @@
 package paradiseTravels.servlets.servlet;
 
+import paradiseTravels.bean.user.AuthBean;
 import paradiseTravels.model.Address;
 import paradiseTravels.model.User;
-import paradiseTravels.services.AddressService;
-import paradiseTravels.services.user.AuthBean;
-import paradiseTravels.services.user.UserBean;
+import paradiseTravels.bean.AddressService;
+import paradiseTravels.bean.user.UserBean;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,9 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "RegisterServlet")
+@Deprecated
 public class RegisterServlet extends HttpServlet {
     private UserBean service = new UserBean();
     private AddressService adr_service = new AddressService();
+
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("********Register Servlet doPost***********");
