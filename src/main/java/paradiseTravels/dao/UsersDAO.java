@@ -9,11 +9,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.List;
 
-@ApplicationScoped
-public class UsersDAO {
-
-    @Inject
-    HibernateSessionBean hibernateSessionBean;
+public class UsersDAO extends EntityDao<User>{
 
     public User findById(int id) {
         return hibernateSessionBean.getSession().get(User.class, id);
@@ -28,37 +24,6 @@ public class UsersDAO {
         }
 
     }
-
-    public void save(User user) {
-        Session session = hibernateSessionBean.getSession();
-        Transaction tx1 = session.beginTransaction();
-        session.save(user);
-        tx1.commit();
-        session.close();
-    }
-
-    public void update(User user) {
-        Session session = hibernateSessionBean.getSession();
-        Transaction tx1 = session.beginTransaction();
-        session.update(user);
-        tx1.commit();
-        session.close();
-    }
-
-    public void delete(User user) {
-        Session session = hibernateSessionBean.getSession();
-        Transaction tx1 = session.beginTransaction();
-        session.delete(user);
-        tx1.commit();
-        session.close();
-    }
-
-    public List<User> findAll() {
-        List<User> users = (List<User>) hibernateSessionBean.getSession().createQuery("From User").list();
-        return users;
-    }
-
-
 
     public User findByLoginPassword(String login, String password) {
         try {
