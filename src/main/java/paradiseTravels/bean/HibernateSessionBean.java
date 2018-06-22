@@ -11,7 +11,6 @@ import org.hibernate.cfg.Configuration;
 import javax.enterprise.context.ApplicationScoped;
 
 
-@ApplicationScoped
 public class HibernateSessionBean {
 
 
@@ -26,7 +25,7 @@ public class HibernateSessionBean {
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
         sessionFactory = configuration.buildSessionFactory(builder.build());
 
-        session = sessionFactory.openSession();
+        this.session = sessionFactory.openSession();
     }
 
     public SessionFactory getSessionFactory() {
@@ -34,7 +33,7 @@ public class HibernateSessionBean {
     }
 
     public Session getSession() {
-        return sessionFactory.getCurrentSession();
+        return session;
     }
 
 }
