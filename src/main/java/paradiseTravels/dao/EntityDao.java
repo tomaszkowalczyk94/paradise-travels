@@ -6,6 +6,7 @@ import paradiseTravels.bean.HibernateSessionBean;
 import paradiseTravels.model.User;
 
 import javax.inject.Inject;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 abstract public class EntityDao<T> {
@@ -39,8 +40,8 @@ abstract public class EntityDao<T> {
 
     @SuppressWarnings("unchecked")
     private Class<T> getClassType () {
-        return ((Class) ((T) getClass()
-                .getGenericSuperclass()).getClass());
+        return ((Class) ((ParameterizedType) getClass()
+                .getGenericSuperclass()).getActualTypeArguments()[0]);
     }
 
 
