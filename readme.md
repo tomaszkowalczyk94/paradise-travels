@@ -23,6 +23,14 @@ response:
 }
 ```
 
+### logout
+GET /logout
+response:
+```json
+{
+"result": true
+}
+```
 
 
 ### rejestracja
