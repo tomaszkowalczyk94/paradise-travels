@@ -2,10 +2,10 @@ package paradiseTravels.bean.user;
 
 import paradiseTravels.bean.user.exception.InvalidCredentialsException;
 import paradiseTravels.bean.user.exception.UserAlreadyLoggedException;
+import paradiseTravels.bean.user.exception.UserNotLoggedException;
 import paradiseTravels.dao.UsersDAO;
 import paradiseTravels.model.User;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -22,7 +22,7 @@ public class AuthBean {
         if(user == null) {
             throw new InvalidCredentialsException();
         }
-        if(isAlreadyLogged(session))
+        if(isLogged(session))
         {
             throw new UserAlreadyLoggedException();
         }
@@ -31,11 +31,20 @@ public class AuthBean {
 
     }
 
+    public void logout(HttpSession session) throws UserNotLoggedException {
+        if(!isLogged(session)) {
+            throw new UserNotLoggedException();
+        }
 
-    private boolean isAlreadyLogged(HttpSession session)
+        session.removeAttribute("user");
+    }
+
+    private boolean isLogged(HttpSession session)
     {
         User loggedUser = (User) session.getAttribute("user");
         if(loggedUser == null) return false;
         else return true;
     }
+
+
 }
