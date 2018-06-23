@@ -1,11 +1,11 @@
 package paradiseTravels.bean.user;
 
-import paradiseTravels.dao.EntityDao;
+import paradiseTravels.dao.EntityDAO;
 
 import javax.inject.Inject;
 import java.util.List;
 
-abstract public class EntityBean<T, K extends EntityDao<T>>  {
+abstract public class EntityBean<T, K extends EntityDAO<T>>  {
 
     @Inject
     K entityDao;

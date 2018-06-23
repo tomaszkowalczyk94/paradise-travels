@@ -1,15 +1,8 @@
 package paradiseTravels.dao;
 
 import paradiseTravels.model.User;
-import paradiseTravels.bean.HibernateSessionBean;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import java.util.List;
-
-public class UsersDAO extends EntityDao<User>{
+public class UsersDAO extends EntityDAO<User> {
 
     public User findById(int id) {
         return hibernateSessionBean.getSession().get(User.class, id);

@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-abstract public class EntityDao<T> {
+abstract public class EntityDAO<T> {
 
     @Inject
     protected HibernateSessionBean hibernateSessionBean;
