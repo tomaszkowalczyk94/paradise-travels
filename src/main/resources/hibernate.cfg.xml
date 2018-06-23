@@ -13,6 +13,7 @@
         <!--<property name="connection.pool_size">1</property>-->
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">qwertyqwerty</property>
+        <!--<property name="hibernate.connection.password">postgres</property>-->
 
 
         <!-- SQL dialect -->
@@ -34,7 +35,7 @@
         <mapping class="paradiseTravels.model.Review"/>
         <mapping class="paradiseTravels.model.Room"/>
         <mapping class="paradiseTravels.model.LocalJourney"/>
-        <mapping class="paradiseTravels.model.Facility"/>
         <mapping class="paradiseTravels.model.Reservation"/>
+        <mapping class="paradiseTravels.model.Offer"/>
     </session-factory>
 </hibernate-configuration>
