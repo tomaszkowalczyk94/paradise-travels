@@ -1,4 +1,5 @@
 
+![alt text](https://raw.githubusercontent.com/tomaszkowalczyk94/paradise-travels/master/doc/schemat.jpg)
 
 ## logowanie
 POST /login
