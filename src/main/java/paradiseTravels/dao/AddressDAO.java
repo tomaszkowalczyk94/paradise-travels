@@ -4,15 +4,13 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import paradiseTravels.model.Address;
 import paradiseTravels.bean.HibernateSessionBean;
+import paradiseTravels.model.Offer;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 @ApplicationScoped
-public class AddressDAO {
-
-    @Inject
-    HibernateSessionBean hibernateSessionBean;
+public class AddressDAO  extends EntityDAO<Address> {
 
     public Integer getAddressId(Address address){
         Integer id  = ((Address) hibernateSessionBean.getSession().createQuery(
