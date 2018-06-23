@@ -3,10 +3,10 @@ package paradiseTravels.bean;
 import paradiseTravels.dao.AddressDAO;
 import paradiseTravels.model.Address;
 
-public class AddressService {
+public class AddressBean {
     private AddressDAO addressDAO = new AddressDAO();
 
-    public AddressService(){
+    public AddressBean(){
 
     }
 

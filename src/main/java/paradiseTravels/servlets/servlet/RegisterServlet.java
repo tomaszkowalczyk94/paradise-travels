@@ -1,24 +1,13 @@
 package paradiseTravels.servlets.servlet;
 
-import paradiseTravels.bean.user.AuthBean;
-import paradiseTravels.model.Address;
-import paradiseTravels.model.User;
-import paradiseTravels.bean.AddressService;
-import paradiseTravels.bean.user.UserBean;
-
-import javax.inject.Inject;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @WebServlet(name = "RegisterServlet")
 @Deprecated
 public class RegisterServlet extends HttpServlet {
 //    private UserBean service = new UserBean();
-//    private AddressService adr_service = new AddressService();
+//    private AddressBean adr_service = new AddressBean();
 //
 //
 //    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
