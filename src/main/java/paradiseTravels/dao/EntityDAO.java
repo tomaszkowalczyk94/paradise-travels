@@ -18,19 +18,22 @@ abstract public class EntityDAO<T> {
         return (T) hibernateSessionBean.getSession().get(getClassType(), id);
     }
 
-    public void save(T t) {
+    public void insert(T t) {
+        hibernateSessionBean.getSession().beginTransaction();
         hibernateSessionBean.getSession().save(t);
-        hibernateSessionBean.getSession().flush();
+        hibernateSessionBean.getSession().getTransaction().commit();
     }
 
     public void update(T t) {
+        hibernateSessionBean.getSession().beginTransaction();
         hibernateSessionBean.getSession().update(t);
-        hibernateSessionBean.getSession().flush();
+        hibernateSessionBean.getSession().getTransaction().commit();
     }
 
     public void delete(T t) {
+        hibernateSessionBean.getSession().beginTransaction();
         hibernateSessionBean.getSession().delete(t);
-        hibernateSessionBean.getSession().flush();
+        hibernateSessionBean.getSession().getTransaction().commit();
     }
 
     public List<T> findAll() {

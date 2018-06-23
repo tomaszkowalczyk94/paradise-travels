@@ -14,8 +14,8 @@ abstract public class EntityBean<T, K extends EntityDAO<T>>  {
         return entityDao.findById(id);
     }
 
-    public void save(T t) {
-        entityDao.save(t);
+    public void add(T t) {
+        entityDao.insert(t);
     }
 
     public void update(T t) {
