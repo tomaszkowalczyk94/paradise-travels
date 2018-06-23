@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name="hotel")
-public class Hotel implements Serializable {
+public class Hotel implements Serializable, EntityIdInterface {
 
     private static final long serialVersionUID = 3132L;
     @Id

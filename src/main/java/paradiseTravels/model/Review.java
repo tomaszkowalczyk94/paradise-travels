@@ -11,7 +11,7 @@ import java.io.Serializable;
 * */
 @Entity
 @Table(name="review")
-public class Review implements Serializable {
+public class Review implements Serializable, EntityIdInterface {
     private static final long serialVersionUID = 21651L;
     @Id
     @Column(name="id")

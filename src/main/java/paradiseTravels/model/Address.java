@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "address")
-public class Address implements Serializable {
+public class Address implements Serializable, EntityIdInterface {
 
     private static final long serialVersionUID = 1L;
     @Id

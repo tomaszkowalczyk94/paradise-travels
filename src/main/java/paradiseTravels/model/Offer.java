@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name="offer")
-public class Offer {
+public class Offer implements EntityIdInterface {
     private static final long serialVersionUID = 3342351L;
     @Id
     @Column(name="id")

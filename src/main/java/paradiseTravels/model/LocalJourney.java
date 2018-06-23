@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name="local_journey")
-public class LocalJourney implements Serializable{
+public class LocalJourney implements Serializable, EntityIdInterface{
     private static final long serialVersionUID = 143215L;
     @Id
     @Column(name ="id")

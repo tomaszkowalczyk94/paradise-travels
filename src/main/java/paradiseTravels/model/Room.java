@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name="room")
-public class Room implements Serializable {
+public class Room implements Serializable, EntityIdInterface {
     private static final long serialVersionUID = 31232L;
     @Id
     @Column(name ="id")
