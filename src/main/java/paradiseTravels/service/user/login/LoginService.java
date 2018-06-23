@@ -3,6 +3,7 @@ package paradiseTravels.service.user.login;
 import paradiseTravels.bean.user.AuthBean;
 import paradiseTravels.bean.user.UserBean;
 import paradiseTravels.bean.user.exception.InvalidCredentialsException;
+import paradiseTravels.bean.user.exception.UserAlreadyLoggedException;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -58,6 +59,10 @@ public class LoginService {
             loginResult.setResult(false);
             loginResult.setMsg("Hasło lub login niepoprawne");
 
+            return Response.status(400).entity(loginResult).build();
+        }catch (UserAlreadyLoggedException e) {
+            loginResult.setResult(false);
+            loginResult.setMsg("Jestes juz zalogowany!");
             return Response.status(400).entity(loginResult).build();
         }
     }
