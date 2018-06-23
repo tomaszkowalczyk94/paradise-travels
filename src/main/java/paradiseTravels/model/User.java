@@ -1,6 +1,8 @@
 package paradiseTravels.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
@@ -13,13 +15,24 @@ public class User implements Serializable, EntityIdInterface {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     //można nie podawać Column name, jeżeli ono jest takie same jak nazwa columny w tabeli
+    @NotNull
+    @Size(min=2,max=30)
     private String firstName;
+    @NotNull
+    @Size(min=2,max=30)
     private String lastName;
     //wiele userow ma ten sam adres
+
     @ManyToOne
     private Address address;
+    @NotNull
+    @Size(min=2,max=30)
     private String email;
+    @NotNull
+    @Size(min=4,max=30)
     private String login;
+    @NotNull
+    @Size(min=4,max=30)
     private String password;
     private String role;
 

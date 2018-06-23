@@ -1,5 +1,6 @@
 package paradiseTravels.bean.user;
 
+import paradiseTravels.bean.user.exception.InvalidCredentialsException;
 import paradiseTravels.dao.UsersDAO;
 import paradiseTravels.model.User;
 import javax.inject.Inject;
@@ -19,6 +20,11 @@ public class UserBean extends EntityBean<User, UsersDAO> {
         return getEntityDao().findAll().size();
     }
 
-
-
+    @Override
+    public void add(User user) throws Exception {
+        if(isExist(user.getLogin())) {
+            throw new InvalidCredentialsException();
+        }
+        super.add(user);
+    }
 }
