@@ -35,6 +35,8 @@ response:
 
 ### rejestracja
 
+POST /register
+
 Request body:
 ~~~json
 {
