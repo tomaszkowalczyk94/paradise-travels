@@ -34,7 +34,36 @@ response:
 
 
 ### rejestracja
-@todo
+
+Request body:
+~~~json
+{
+  "user": {
+    "firstName": "ImieXXX",
+    "lastName": "NazwiskoXXX",
+    "email": "malami@gmail.com",
+    "login": "malami19",
+    "password": "password"
+  },
+  "passwordRepeat": "password"
+}
+~~~
+Response failure:
+~~~json
+{
+"result": false,
+"msg": "Podany użytkownik istnieje"
+}
+~~~
+
+Response OK:
+~~~json
+{
+"result": true,
+"msg": "Rejestracja pomyślna"
+}
+~~~
+
 
 
 ### lista userów
