@@ -1,6 +1,7 @@
 
 
-## logowanie
+
+#### logowanie
 POST /login
 
 request body:
@@ -19,6 +20,25 @@ response:
 }
 ```
 
-## rejestracja
-
+#### rejestracja
 @todo
+
+
+#### lista userów
+GET /users
+
+#### konkretny user
+GET /users/ID_USERA
+
+#### usunięcie usera
+DELETE /users/ID_USERA
+
+#### update usera
+PUT /users/ID_USERA
+
+przykładowy request body, dla updatu wieku:
+```json
+{
+  "age":22
+}
+```
