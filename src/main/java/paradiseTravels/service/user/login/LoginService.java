@@ -5,6 +5,7 @@ import paradiseTravels.bean.user.UserBean;
 import paradiseTravels.bean.user.exception.InvalidCredentialsException;
 import paradiseTravels.bean.user.exception.UserAlreadyLoggedException;
 
+import javax.annotation.security.PermitAll;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -59,11 +60,17 @@ public class LoginService {
             loginResult.setResult(false);
             loginResult.setMsg("Hasło lub login niepoprawne");
 
-            return Response.status(400).entity(loginResult).build();
+            return Response.status(200).entity(loginResult).build();
         }catch (UserAlreadyLoggedException e) {
             loginResult.setResult(false);
             loginResult.setMsg("Jestes juz zalogowany!");
-            return Response.status(400).entity(loginResult).build();
+            return Response.status(200).entity(loginResult).build();
         }
+    }
+
+    @OPTIONS
+    @PermitAll
+    public Response options() {
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 }
