@@ -39,12 +39,18 @@ public class AuthBean {
         session.removeAttribute("user");
     }
 
+
+    public User getLogged(HttpSession session) {
+        return (User)session.getAttribute("user");
+    }
     private boolean isLogged(HttpSession session)
     {
         User loggedUser = (User) session.getAttribute("user");
         if(loggedUser == null) return false;
         else return true;
     }
+
+
 
 
 }

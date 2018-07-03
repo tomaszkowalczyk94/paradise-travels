@@ -23,6 +23,26 @@ response:
 }
 ```
 
+### aktualnie zalogowany users
+GET /users/logged
+
+response:
+```json
+{
+    "id": 3,
+    "firstName": "xxx",
+    "lastName": "xxx",
+    "address": null,
+    "email": "xxx",
+    "login": "admin",
+    "role": null
+}
+```
+
+Jeśli aktualnie nie jesteśmy zalogowani, serwer zwroci nam
+http status 204 No Content
+
+
 ### logout
 GET /logout
 response:
