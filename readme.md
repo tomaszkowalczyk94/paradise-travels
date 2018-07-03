@@ -65,7 +65,13 @@ Request body:
     "lastName": "NazwiskoXXX",
     "email": "malami@gmail.com",
     "login": "malami19",
-    "password": "password"
+    "password": "password",
+    "address": {
+        "address" : "Warszawsa 5",
+        "postalCode" : "25-000",
+        "region": "swietokrzyskie",
+        "country": "Polska"
+    }
   },
   "passwordRepeat": "password"
 }

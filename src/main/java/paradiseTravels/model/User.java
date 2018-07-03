@@ -10,6 +10,7 @@ import java.io.Serializable;
 public class User implements Serializable, EntityIdInterface {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @Column (name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,16 +19,19 @@ public class User implements Serializable, EntityIdInterface {
     @NotNull
     @Size(min=2,max=30)
     private String firstName;
+
     @NotNull
     @Size(min=2,max=30)
     private String lastName;
     //wiele userow ma ten sam adres
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Address address;
+
     @NotNull
     @Size(min=2,max=30)
     private String email;
+
     @NotNull
     @Size(min=4,max=30)
     private String login;

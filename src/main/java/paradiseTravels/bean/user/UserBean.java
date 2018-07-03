@@ -2,6 +2,7 @@ package paradiseTravels.bean.user;
 
 import paradiseTravels.bean.user.exception.InvalidCredentialsException;
 import paradiseTravels.dao.UsersDAO;
+import paradiseTravels.model.Address;
 import paradiseTravels.model.User;
 import javax.inject.Inject;
 import java.nio.file.attribute.UserDefinedFileAttributeView;
@@ -25,6 +26,12 @@ public class UserBean extends EntityBean<User, UsersDAO> {
         if(isExist(user.getLogin())) {
             throw new InvalidCredentialsException();
         }
+
+
+        if(user.getAddress() == null) {
+            user.setAddress(new Address());
+        }
+
         super.add(user);
     }
 }
