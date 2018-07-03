@@ -3,6 +3,7 @@ package paradiseTravels.service.user.register;
 import paradiseTravels.bean.user.AuthBean;
 import paradiseTravels.bean.user.UserBean;
 import paradiseTravels.bean.user.exception.InvalidCredentialsException;
+import paradiseTravels.model.User;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -44,11 +45,11 @@ public class RegisterService {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response doPost(@Valid RegisterRequest registerRequest, @Context HttpServletRequest request) throws ServletException,IOException {
+    public Response doPost(@Valid User user, @Context HttpServletRequest request) throws ServletException,IOException {
         RegisterResult registerResult = new RegisterResult();
 
         try{
-            userBean.add(registerRequest.getUser());
+            userBean.add(user);
             registerResult.setResult(true);
             registerResult.setMsg("Rejestracja pomyślna");
             return Response.status(200).entity(registerResult).build();
