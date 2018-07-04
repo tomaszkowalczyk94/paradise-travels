@@ -1,6 +1,7 @@
 
 ![alt text](https://raw.githubusercontent.com/tomaszkowalczyk94/paradise-travels/master/doc/schemat.jpg)
 
+Adres: http://77.55.193.96:8080/paradiseTravels
 
 # autoryzacja & users
 
