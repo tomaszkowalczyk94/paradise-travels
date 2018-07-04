@@ -1,6 +1,7 @@
 package paradiseTravels.bean;
 
 
+import org.hibernate.CacheMode;
 import org.hibernate.Session;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -22,6 +23,7 @@ public class HibernateSessionBean {
                 .build();
             sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
         this.session = sessionFactory.openSession();
+        this.session.setCacheMode(CacheMode.IGNORE);
     }
     public SessionFactory getSessionFactory() {
         return sessionFactory;

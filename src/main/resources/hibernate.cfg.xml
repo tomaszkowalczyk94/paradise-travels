@@ -19,8 +19,9 @@
         <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
 
-        <!-- Disable the second-level cache  -->
-        <property name="cache.provider_class">org.hibernate.cache.internal.NoCachingRegionFactory</property>
+
+        <property name="hibernate.cache.use_second_level_cache">false</property>
+        <property name="hibernate.cache.use_query_cache">false</property>
 
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>

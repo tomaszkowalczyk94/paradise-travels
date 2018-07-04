@@ -1,5 +1,7 @@
 package paradiseTravels.dao;
 
+import org.hibernate.CacheMode;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import paradiseTravels.bean.HibernateSessionBean;
@@ -37,7 +39,10 @@ abstract public class EntityDAO<T> {
     }
 
     public List<T> findAll() {
-        return  hibernateSessionBean.getSession().createQuery("from " + getClassType().getName()).list();
+        hibernateSessionBean.getSession().clear();
+        Query query = hibernateSessionBean.getSession().createQuery("from " + getClassType().getName()).setCacheMode(CacheMode.IGNORE).setCacheable(false);
+        List list = query.list();
+        return list;
     }
 
 
