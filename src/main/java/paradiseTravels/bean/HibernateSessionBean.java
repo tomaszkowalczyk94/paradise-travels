@@ -7,8 +7,10 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import javax.enterprise.context.ApplicationScoped;
 
 
+@ApplicationScoped
 public class HibernateSessionBean {
 
 

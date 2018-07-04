@@ -38,6 +38,7 @@ public class User implements Serializable, EntityIdInterface {
     @NotNull
     @Size(min=4,max=30)
     private String password;
+
     private String role;
 
     public User() {
