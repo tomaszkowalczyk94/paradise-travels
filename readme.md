@@ -93,7 +93,15 @@ Response OK:
 }
 ~~~
 
+### sprawdzenie czy login istnieje
+GET /users/is-exist/admin
 
+response:
+```json
+{
+    "value": true
+}
+```
 
 ### lista userów
 GET /users

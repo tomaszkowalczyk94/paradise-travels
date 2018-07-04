@@ -14,7 +14,7 @@ import java.util.List;
 abstract public class EntityService<T extends EntityIdInterface, K extends EntityBean> {
 
     @Inject
-    K bean;
+    protected K bean;
 
     @GET
     @Path("/")
