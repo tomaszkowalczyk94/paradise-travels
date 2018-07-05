@@ -22,7 +22,7 @@ public class UserService extends EntityService<User, UserBean>
     @Inject
     AuthBean authBean;
 
-    public User createNew(User user) throws Exception {
+    public User createNew(User entity) throws Exception {
         throw new BadRequestException();
     }
 

@@ -218,3 +218,25 @@ response:
 
 ### usunięcie oferty
 DELETE /offers/3
+
+# adress
+* pobranie wszystkich: GET /addresses
+* pobranie jednego: GET /addresses/<ID>
+* dodanie nowego: POST /addresses
+* edycja: PUT /addresses/<ID>
+* usunięcie: DELETE /addresses/<ID>
+
+# hotel
+* pobranie wszystkich: GET /hotels
+* pobranie jednego: GET /hotels/<ID>
+* dodanie nowego: POST /hotels
+* edycja: PUT /hotels/<ID>
+* usunięcie: DELETE /hotels/<ID>
+
+# wycieczki lokalne
+* pobranie wszystkich: GET /local-journeys
+* pobranie jednego: GET /local-journeys/<ID>
+* dodanie nowego: POST /local-journeys
+* edycja: PUT /local-journeys/<ID>
+* usunięcie: DELETE /local-journeys/<ID>
+

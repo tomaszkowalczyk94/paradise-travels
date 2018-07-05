@@ -126,7 +126,15 @@
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>${version.wildfly.maven.plugin}</version>
-
+                <!--<configuration>-->
+                    <!--<java-opts>-->
+                        <!--<java-opt>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005</java-opt>-->
+                    <!--</java-opts>-->
+                    <!--<hostname>77.55.193.96</hostname>-->
+                    <!--<port>9990</port>-->
+                    <!--<username>tomek</username>-->
+                    <!--<password>qwerty</password>-->
+                <!--</configuration>-->
 
             </plugin>
 

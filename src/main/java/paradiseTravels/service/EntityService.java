@@ -19,14 +19,14 @@ abstract public class EntityService<T extends EntityIdInterface, K extends Entit
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<T> getUsers() throws Exception{
+    public List<T> getAll() throws Exception{
         return bean.findAll();
     }
 
     @GET
-    @Path("/{userid}")
+    @Path("/{entityId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public T getUser(@PathParam("userid") int id) throws Exception{
+    public T getOne(@PathParam("entityId") int id) throws Exception{
         return (T)bean.findById(id);
     }
 
@@ -34,23 +34,23 @@ abstract public class EntityService<T extends EntityIdInterface, K extends Entit
     @Path("/")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public T createNew(T user) throws Exception{
-        bean.add(user);
-        return user;
+    public T createNew(T entity) throws Exception{
+        bean.add(entity);
+        return entity;
     }
 
     @PUT
-    @Path("/{userid}")
+    @Path("/{entityId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public T updateUser(T entity, @PathParam("userid") int id) throws Exception{
+    public T updateUser(T entity, @PathParam("entityId") int id) throws Exception{
         entity.setId(id);
         bean.update(entity);
         return entity;
     }
 
     @DELETE
-    @Path("/{userid}")
-    public void delete(@PathParam("userid") int id) throws Exception {
+    @Path("/{entityId}")
+    public void delete(@PathParam("entityId") int id) throws Exception {
         T entity = (T)bean.findById(id);
         bean.delete(entity);
     }
