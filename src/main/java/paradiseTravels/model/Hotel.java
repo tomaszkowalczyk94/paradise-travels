@@ -28,6 +28,7 @@ public class Hotel implements Serializable, EntityIdInterface {
     @OneToMany(targetEntity = Review.class)
     private List<Review> reviewList;
 
+    @ManyToMany(targetEntity = LocalJourney.class)
     public List<LocalJourney> getLocalJourneyList() {
         return localJourneyList;
     }
