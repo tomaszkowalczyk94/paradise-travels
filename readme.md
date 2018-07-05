@@ -240,3 +240,25 @@ DELETE /offers/3
 * edycja: PUT /local-journeys/<ID>
 * usunięcie: DELETE /local-journeys/<ID>
 
+# rezerwacje
+* pobranie wszystkich: GET /reservations
+* pobranie jednego: GET /reservations/<ID>
+* dodanie nowego: POST /reservations
+* edycja: PUT /reservations/<ID>
+* usunięcie: DELETE /reservations/<ID>
+
+
+# recenzje
+* pobranie wszystkich: GET /reviews
+* pobranie jednego: GET /reviews/<ID>
+* dodanie nowego: POST /reviews
+* edycja: PUT /reviews/<ID>
+* usunięcie: DELETE /reviews/<ID>
+
+
+# pokoje
+* pobranie wszystkich: GET /rooms
+* pobranie jednego: GET /rooms/<ID>
+* dodanie nowego: POST /rooms
+* edycja: PUT /rooms/<ID>
+* usunięcie: DELETE /rooms/<ID>
