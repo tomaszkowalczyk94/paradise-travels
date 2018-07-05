@@ -10,4 +10,11 @@ public class PojoBooleanResponse {
     public void setValue(boolean value) {
         this.value = value;
     }
+
+    public PojoBooleanResponse(boolean value) {
+        this.value = value;
+    }
+
+    public PojoBooleanResponse() {
+    }
 }

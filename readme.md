@@ -49,7 +49,7 @@ GET /logout
 response:
 ```json
 {
-"result": true
+"value": true
 }
 ```
 
