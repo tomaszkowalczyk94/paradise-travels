@@ -33,18 +33,14 @@ public class Hotel implements Serializable, EntityIdInterface {
     @Min(0)
     private Integer numberOfOnePersonBed;
 
-
-
     /* maksymalna liczba miejsc w hotelu*/
-    public int getMaxNumberOfCustomers()
+    public Integer getMaxNumberOfCustomers()
     {
+        if(numberOfOnePersonBed == null || numberOfTwoPersonBed == null) {
+            return 0;
+        }
         return numberOfOnePersonBed+numberOfTwoPersonBed;
     }
-
-
-
-
-
 
     /*@OneToMany(targetEntity = Room.class)
     private List<Room> roomList;*/

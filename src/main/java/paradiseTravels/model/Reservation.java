@@ -30,7 +30,7 @@ public class Reservation implements EntityIdInterface {
     private Date dateTo;
 
    /*cena całosciowa */
-    private float priceTotal;
+    private Float priceTotal;
 
     @Enumerated(EnumType.STRING)
     private ReservationStatus reservationStatus;
