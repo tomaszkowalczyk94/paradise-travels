@@ -23,6 +23,8 @@ public class Review implements Serializable, EntityIdInterface {
     private Integer stars;
     @ManyToOne
     private User user;
+    @ManyToOne
+    private Offer offer;
 
     public Integer getId() {
         return id;
