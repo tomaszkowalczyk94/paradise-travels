@@ -15,6 +15,8 @@ public class LocalJourney implements Serializable, EntityIdInterface{
     private String description;
     private Float price;
     private Integer durationTimeMin;
+    private String languageGuide;
+
 
     public Integer getId() {
         return id;
@@ -54,6 +56,18 @@ public class LocalJourney implements Serializable, EntityIdInterface{
 
     public void setDurationTimeMin(Integer durationTimeMin) {
         this.durationTimeMin = durationTimeMin;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getLanguageGuide() {
+        return languageGuide;
+    }
+
+    public void setLanguageGuide(String languageGuide) {
+        this.languageGuide = languageGuide;
     }
 }
 
