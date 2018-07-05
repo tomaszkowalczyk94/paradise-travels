@@ -94,12 +94,22 @@ Response OK:
 ~~~
 
 ### sprawdzenie czy login istnieje
-GET /users/is-exist/admin
+GET /users/login-is-exist/admin
 
 response:
 ```json
 {
     "value": true
+}
+```
+
+### sprawdzenie czy email istnieje
+GET /users/login-is-exist/test@test.pl
+
+response:
+```json
+{
+    "value": false
 }
 ```
 

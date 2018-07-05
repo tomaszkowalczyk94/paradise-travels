@@ -1,6 +1,5 @@
 package paradiseTravels.service.user;
 
-import org.json.JSONObject;
 import paradiseTravels.bean.user.AuthBean;
 import paradiseTravels.bean.user.UserBean;
 import paradiseTravels.model.User;
@@ -12,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.util.List;
 
 @Path("/users")
 public class UserService extends EntityService<User, UserBean>
@@ -35,12 +32,23 @@ public class UserService extends EntityService<User, UserBean>
 
 
     @GET
-    @Path("/is-exist/{username}")
+    @Path("/login-is-exist/{login}")
     @Produces(MediaType.APPLICATION_JSON)
-    public PojoBooleanResponse getUser(@PathParam("username") String username) throws Exception{
+    public PojoBooleanResponse loginIsExist(@PathParam("login") String username) throws Exception{
 
         PojoBooleanResponse pojoBooleanResponse = new PojoBooleanResponse();
-        pojoBooleanResponse.setValue(bean.isExist(username));
+        pojoBooleanResponse.setValue(bean.loginIsExist(username));
+
+        return pojoBooleanResponse;
+    }
+
+    @GET
+    @Path("/email-is-exist/{email}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public PojoBooleanResponse emailIsExist(@PathParam("email") String email) throws Exception{
+
+        PojoBooleanResponse pojoBooleanResponse = new PojoBooleanResponse();
+        pojoBooleanResponse.setValue(bean.emailIsExist(email));
 
         return pojoBooleanResponse;
     }

@@ -11,11 +11,19 @@ public class UsersDAO extends EntityDAO<User> {
     public boolean findByLogin(String login) {
         try {
             User  user = (User) hibernateSessionBean.getSession().createQuery("FROM User WHERE login='"+login+"'").uniqueResult();
-            return user.getLogin().equals(login);
+            return user.getLogin().equalsIgnoreCase(login);
         }catch (Exception e){
             return false;
         }
+    }
 
+    public boolean findByEmail(String email) {
+        try {
+            User  user = (User) hibernateSessionBean.getSession().createQuery("FROM User WHERE email='"+email+"'").uniqueResult();
+            return user.getEmail().equalsIgnoreCase(email);
+        }catch (Exception e){
+            return false;
+        }
     }
 
     public User findByLoginPassword(String login, String password) {

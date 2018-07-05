@@ -17,11 +17,11 @@ public class User implements Serializable, EntityIdInterface {
     private Integer id;
     //można nie podawać Column name, jeżeli ono jest takie same jak nazwa columny w tabeli
     @NotNull
-    @Size(min=2,max=30)
+    @Size(min=2,max=120)
     private String firstName;
 
     @NotNull
-    @Size(min=2,max=30)
+    @Size(min=2,max=120)
     private String lastName;
     //wiele userow ma ten sam adres
 
@@ -29,14 +29,14 @@ public class User implements Serializable, EntityIdInterface {
     private Address address;
 
     @NotNull
-    @Size(min=2,max=30)
+    @Size(min=2,max=120)
     private String email;
 
     @NotNull
-    @Size(min=4,max=30)
+    @Size(min=4,max=120)
     private String login;
     @NotNull
-    @Size(min=4,max=30)
+    @Size(min=4,max=120)
     private String password;
 
     private String role;
