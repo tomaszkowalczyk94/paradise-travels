@@ -1,6 +1,7 @@
 package paradiseTravels.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.xml.crypto.Data;
 import java.util.Date;
 
@@ -20,16 +21,27 @@ public class Reservation implements EntityIdInterface {
     @ManyToOne
     private Offer offer;
 
+    @Min(0)
+    private Integer numberOfTwoPersonBed;
+    @Min(0)
+    private Integer numberOfOnePersonBed;
+
     private Date dateFrom;
     private Date dateTo;
 
-    private float price;
+   /*cena całosciowa */
+    private float priceTotal;
 
     @Enumerated(EnumType.STRING)
     private ReservationStatus reservationStatus;
 
     public Integer getId() {
         return id;
+    }
+
+    public int getPepoleCount()
+    {
+        return numberOfOnePersonBed+numberOfTwoPersonBed;
     }
 
     public void setId(Integer id) {
@@ -77,11 +89,27 @@ public class Reservation implements EntityIdInterface {
     }
 
     public float getPrice() {
-        return price;
+        return priceTotal;
     }
 
     public void setPrice(float price) {
-        this.price = price;
+        this.priceTotal = price;
+    }
+
+    public Integer getNumberOfTwoPersonBed() {
+        return numberOfTwoPersonBed;
+    }
+
+    public void setNumberOfTwoPersonBed(Integer numberOfTwoPersonBed) {
+        this.numberOfTwoPersonBed = numberOfTwoPersonBed;
+    }
+
+    public Integer getNumberOfOnePersonBed() {
+        return numberOfOnePersonBed;
+    }
+
+    public void setNumberOfOnePersonBed(Integer numberOfOnePersonBed) {
+        this.numberOfOnePersonBed = numberOfOnePersonBed;
     }
 
     public ReservationStatus getReservationStatus() {
@@ -101,7 +129,7 @@ public class Reservation implements EntityIdInterface {
                 ", offer=" + offer +
                 ", dateFrom=" + dateFrom +
                 ", dateTo=" + dateTo +
-                ", price=" + price +
+                ", price=" + priceTotal +
                 ", reservationStatus=" + reservationStatus +
                 '}';
     }

@@ -28,6 +28,27 @@ public class Hotel implements Serializable, EntityIdInterface {
     @OneToMany(targetEntity = Review.class)
     private List<Review> reviewList;
 
+    @Min(0)
+    private Integer numberOfTwoPersonBed;
+    @Min(0)
+    private Integer numberOfOnePersonBed;
+
+
+
+    /* maksymalna liczba miejsc w hotelu*/
+    public int getMaxNumberOfCustomers()
+    {
+        return numberOfOnePersonBed+numberOfTwoPersonBed;
+    }
+
+
+
+
+
+
+    /*@OneToMany(targetEntity = Room.class)
+    private List<Room> roomList;*/
+
     @ManyToMany(targetEntity = LocalJourney.class)
     public List<LocalJourney> getLocalJourneyList() {
         return localJourneyList;
@@ -37,8 +58,10 @@ public class Hotel implements Serializable, EntityIdInterface {
         this.localJourneyList = localJourneyList;
     }
 
+
     @OneToMany(targetEntity = LocalJourney.class)
     private List<LocalJourney> localJourneyList;
+
 
     public Integer getId() {
         return id;
@@ -99,4 +122,21 @@ public class Hotel implements Serializable, EntityIdInterface {
                 ", reviewList=" + reviewList +
                 '}';
     }
+
+    public Integer getNumberOfTwoPersonBed() {
+        return numberOfTwoPersonBed;
+    }
+
+    public void setNumberOfTwoPersonBed(Integer numberOfTwoPersonBed) {
+        this.numberOfTwoPersonBed = numberOfTwoPersonBed;
+    }
+
+    public Integer getNumberOfOnePersonBed() {
+        return numberOfOnePersonBed;
+    }
+
+    public void setNumberOfOnePersonBed(Integer numberOfOnePersonBed) {
+        this.numberOfOnePersonBed = numberOfOnePersonBed;
+    }
+
 }

@@ -2,6 +2,7 @@ package paradiseTravels.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 import java.util.Date;
 
 @Entity
@@ -21,6 +22,19 @@ public class Offer implements EntityIdInterface {
     private String description;
     private String shortDescription;
 
+
+    @DecimalMin("0.0")
+    private Float pricePerDayPerPerson;
+
+
+
+    public Float getPricePerDayPerPerson() {
+        return pricePerDayPerPerson;
+    }
+
+    public void setPricePerDayPerPerson(Float pricePerDayPerPerson) {
+        this.pricePerDayPerPerson = pricePerDayPerPerson;
+    }
 
     public Integer getId() {
         return id;

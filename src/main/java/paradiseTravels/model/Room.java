@@ -1,9 +1,11 @@
 package paradiseTravels.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.List;
 
+@Deprecated
 @Entity
 @Table(name="room")
 public class Room implements Serializable, EntityIdInterface {
@@ -13,11 +15,12 @@ public class Room implements Serializable, EntityIdInterface {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String description;
+
+    @Min(0)
     private Integer numberOfTwoPersonBed;
+    @Min(0)
     private Integer numberOfOnePersonBed;
-    @ManyToOne
-    private Hotel hotel;
-    private Float price;
+
     @ElementCollection(targetClass = Facility.class)
     @CollectionTable(name="room_facility",joinColumns = {@JoinColumn(name="id")})
     @Enumerated(EnumType.STRING)
@@ -55,21 +58,7 @@ public class Room implements Serializable, EntityIdInterface {
         this.numberOfOnePersonBed = numberOfOnePersonBed;
     }
 
-    public Hotel getHotel() {
-        return hotel;
-    }
 
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
-    }
-
-    public Float getPrice() {
-        return price;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
-    }
 
     public List<Facility> getFacilityList() {
         return facilityList;
@@ -79,6 +68,7 @@ public class Room implements Serializable, EntityIdInterface {
         this.facilityList = facilityList;
     }
 
+
     @Override
     public String toString() {
         return "Room{" +
@@ -86,8 +76,6 @@ public class Room implements Serializable, EntityIdInterface {
                 ", description='" + description + '\'' +
                 ", numberOfTwoPersonBed=" + numberOfTwoPersonBed +
                 ", numberOfOnePersonBed=" + numberOfOnePersonBed +
-                ", hotel=" + hotel +
-                ", price=" + price +
                 ", facilityList=" + facilityList +
                 '}';
     }
