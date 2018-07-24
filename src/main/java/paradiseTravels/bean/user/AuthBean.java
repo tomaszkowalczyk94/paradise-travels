@@ -41,7 +41,14 @@ public class AuthBean {
 
 
     public User getLogged(HttpSession session) {
-        return (User)session.getAttribute("user");
+        User user = (User)session.getAttribute("user");
+
+        if(user != null) {
+            user = usersDAO.findById(user.getId());
+            session.setAttribute("user", user);
+        }
+
+        return user;
     }
     private boolean isLogged(HttpSession session)
     {
