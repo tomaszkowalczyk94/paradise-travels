@@ -38,5 +38,6 @@
         <mapping class="paradiseTravels.model.LocalJourney"/>
         <mapping class="paradiseTravels.model.Reservation"/>
         <mapping class="paradiseTravels.model.Offer"/>
+        <mapping class="paradiseTravels.model.Invoice"/>
     </session-factory>
 </hibernate-configuration>
