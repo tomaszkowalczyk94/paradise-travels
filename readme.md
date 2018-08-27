@@ -229,6 +229,14 @@ response:
 ### usunięcie oferty
 DELETE /offers/3
 
+### filtr oferty po dacie
+* GET /offers/{dateFrom}/{dateTo}
+
+* format daty : dd-mm-rrrr
+
+* przykład /offers/08-03-2019/12-03-2019
+
+
 # adress
 * pobranie wszystkich: GET /addresses
 * pobranie jednego: GET /addresses/<ID>
@@ -272,3 +280,14 @@ DELETE /offers/3
 * dodanie nowego: POST /rooms
 * edycja: PUT /rooms/<ID>
 * usunięcie: DELETE /rooms/<ID>
+
+# faktury
+
+* pobranie wszystkich: GET /invoices
+* pobranie jednego: GET /invoices/<ID>
+* dodanie nowego: POST /invoices
+* edycja: PUT /invoices/<ID>
+* usunięcie: DELETE /invoices/<ID>
+* generowanie pdf po id faktury /invoices/{id}/pdf
+* generowanie pdf po id rezerwacji /invoices/reservation/{id}/pdf
+

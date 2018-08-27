@@ -1,13 +1,18 @@
 package paradiseTravels.bean;
 
 import paradiseTravels.bean.user.EntityBean;
-import paradiseTravels.dao.AddressDAO;
 import paradiseTravels.dao.OfferDAO;
-import paradiseTravels.model.*;
+import paradiseTravels.model.Offer;
+import paradiseTravels.model.Reservation;
+import paradiseTravels.model.ReservationStatus;
+import paradiseTravels.model.User;
 import paradiseTravels.service.offer.OfferBuyRequestModel;
 
 import javax.inject.Inject;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class OfferBean extends EntityBean<Offer, OfferDAO> {
 
@@ -36,8 +41,39 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
         reservationBean.add(reservation);
     }
 
-    public int daysBetween(Date d1, Date d2) {
+    public List<Offer> findAllWithFillters(Date dateFrom,Date dateTo)
+    {
+        Stream<Offer> offerStream = findAll().stream();
+        offerStream = dateFromFillter(offerStream,dateFrom);
+        offerStream = dateToFillter(offerStream,dateTo);
+
+        return  offerStream.collect(Collectors.toList());
+    }
+
+
+
+    private Stream<Offer> dateFromFillter(Stream<Offer> offerStream,Date dateFrom)
+    {
+        if(dateFrom != null) {
+            return offerStream.filter( e -> e.getDateFrom().before(dateFrom)
+                    && e.getDateFrom().before(dateFrom));
+        }
+        else return offerStream;
+    }
+
+    private Stream<Offer> dateToFillter(Stream<Offer> offerStream, Date dateTo) {
+        if(dateTo != null) {
+            return offerStream.filter( e -> e.getDateFrom().before(dateTo)
+                    && e.getDateTo().after(dateTo));
+        }
+        else return offerStream;
+
+    }
+
+    private int daysBetween(Date d1, Date d2) {
         return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
     }
+
+
 
 }

@@ -1,7 +1,6 @@
 package paradiseTravels.service.offer;
 
 import paradiseTravels.bean.OfferBean;
-import paradiseTravels.bean.user.UserBean;
 import paradiseTravels.model.Offer;
 import paradiseTravels.model.User;
 import paradiseTravels.service.EntityService;
@@ -9,13 +8,13 @@ import paradiseTravels.service.pojoResponse.PojoBooleanResponse;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Enumeration;
+import java.util.List;
 
 @Path("/offers")
 public class OfferService extends EntityService<Offer, OfferBean> {
@@ -33,4 +32,15 @@ public class OfferService extends EntityService<Offer, OfferBean> {
         offerBean.buy(offerBuyRequestModel, (User)request.getSession().getAttribute("user"));
         return new PojoBooleanResponse(true);
     }
+
+    //offers/08-03-2019/12-03-2019
+    @GET
+    @Path("{dateFrom}/{dateTo}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Offer> findWithFillters(@PathParam("dateFrom") String dateFrom, @PathParam("dateTo") String dateTo) throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return offerBean.findAllWithFillters(simpleDateFormat.parse( dateFrom),simpleDateFormat.parse(dateTo));
+    }
+
 }
