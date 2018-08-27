@@ -1,10 +1,7 @@
 package paradiseTravels.service;
 
 import paradiseTravels.bean.user.EntityBean;
-import paradiseTravels.bean.user.UserBean;
-import paradiseTravels.dao.EntityDAO;
 import paradiseTravels.model.EntityIdInterface;
-import paradiseTravels.model.User;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;

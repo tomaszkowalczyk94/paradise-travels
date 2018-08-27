@@ -108,6 +108,12 @@
             <version>20160810</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.13</version>
+        </dependency>
+
         <!-- END WILDFLY -->
 
     </dependencies>
@@ -137,6 +143,8 @@
                 <!--</configuration>-->
 
             </plugin>
+
+
 
         </plugins>
     </build>

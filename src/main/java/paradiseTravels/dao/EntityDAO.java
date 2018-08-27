@@ -2,10 +2,7 @@ package paradiseTravels.dao;
 
 import org.hibernate.CacheMode;
 import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import paradiseTravels.bean.HibernateSessionBean;
-import paradiseTravels.model.User;
 
 import javax.inject.Inject;
 import java.lang.reflect.ParameterizedType;
