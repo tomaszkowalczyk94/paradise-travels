@@ -8,6 +8,7 @@ import paradiseTravels.service.offer.OfferBuyRequestModel;
 
 import javax.inject.Inject;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,10 +18,17 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
 
     @Inject
     ReservationBean reservationBean;
+
     @Inject
     InvoiceBean invoiceBean;
 
+    @Inject
+    LocalJourneyBean localJourneyBean;
+
+    public final static float DUTY_RATE = 1.23f;
+
     public void buy(OfferBuyRequestModel offerBuyRequestModel, User user) throws Exception {
+
         Reservation reservation = new Reservation();
         reservation.setUser(user);
         reservation.setDateFrom(offerBuyRequestModel.getFrom());
@@ -30,28 +38,39 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
         reservation.setOffer(this.findById(offerBuyRequestModel.getOfferId()));
         reservation.setReservationStatus(ReservationStatus.RESERVED);
 
-
-        int days = daysBetween(reservation.getDateFrom(), reservation.getDateTo());
-
-        float dutyRate = (float) 1.23;
-        float totalPrice = days*
-                reservation.getOffer().getPricePerDayPerPerson()*
-                offerBuyRequestModel.getNumberOfCustomers();
-        float priceNetto = totalPrice/dutyRate;
+        float totalPrice = calculateTotalPrice(offerBuyRequestModel);
 
         reservation.setPrice(totalPrice);
         reservationBean.add(reservation);
-        LocalDateTime ldt = LocalDateTime.now();
+
         Invoice invoice = new Invoice();
         invoice.setDateOfPurchase(new Date());
         invoice.setDateInvoice(new Date());
-        invoice.setDutyRate(dutyRate);
+        invoice.setDutyRate(DUTY_RATE);
         invoice.setPriceTotal(totalPrice);
-        invoice.setPriceNetto(priceNetto);
+        invoice.setPriceNetto(totalPrice/DUTY_RATE);
         invoice.setReservation(reservation);
-        invoiceBean.add(invoice);
 
+        invoiceBean.add(invoice);
     }
+
+    private float calculateTotalPrice(OfferBuyRequestModel offerBuyRequestModel) throws Exception {
+
+        int days = daysBetween(offerBuyRequestModel.getFrom(), offerBuyRequestModel.getTo()) + 1;
+
+        Offer offer = this.findById(offerBuyRequestModel.getOfferId());
+
+        float totalPrice = days*
+                offer.getPricePerDayPerPerson()*
+                offerBuyRequestModel.getNumberOfCustomers();
+
+        for(int id : offerBuyRequestModel.getLocalJourneyIds()) {
+            totalPrice += localJourneyBean.getEntityDao().findById(id).getPrice() * offerBuyRequestModel.getNumberOfCustomers();
+        }
+
+        return totalPrice;
+    }
+
 
 
     public List<Offer> findAllWithFillters(Date dateFrom,Date dateTo)
