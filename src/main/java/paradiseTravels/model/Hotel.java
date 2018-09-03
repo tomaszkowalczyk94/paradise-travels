@@ -13,23 +13,30 @@ import java.util.List;
 public class Hotel implements Serializable, EntityIdInterface {
 
     private static final long serialVersionUID = 3132L;
+
     @Id
     @Column(name ="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     //hotel ma jeden adres
     @OneToOne
     private Address address;
+
     private String name;
+
     private String description;
+
     @DecimalMin("0.0")
     @DecimalMax("5.5")
     private Float stars;
+
     @OneToMany(targetEntity = Review.class)
     private List<Review> reviewList;
 
     @Min(0)
     private Integer numberOfTwoPersonBed;
+
     @Min(0)
     private Integer numberOfOnePersonBed;
 
@@ -45,7 +52,6 @@ public class Hotel implements Serializable, EntityIdInterface {
     /*@OneToMany(targetEntity = Room.class)
     private List<Room> roomList;*/
 
-    @ManyToMany(targetEntity = LocalJourney.class)
     public List<LocalJourney> getLocalJourneyList() {
         return localJourneyList;
     }
@@ -54,10 +60,8 @@ public class Hotel implements Serializable, EntityIdInterface {
         this.localJourneyList = localJourneyList;
     }
 
-
-    @OneToMany(targetEntity = LocalJourney.class)
+    @ManyToMany(targetEntity = LocalJourney.class)
     private List<LocalJourney> localJourneyList;
-
 
     public Integer getId() {
         return id;

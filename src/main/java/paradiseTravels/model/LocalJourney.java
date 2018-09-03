@@ -2,21 +2,27 @@ package paradiseTravels.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name="local_journey")
 public class LocalJourney implements Serializable, EntityIdInterface{
+
     private static final long serialVersionUID = 143215L;
+
     @Id
     @Column(name ="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String name;
     private String description;
     private Float price;
     private Integer durationTimeMin;
     private String languageGuide;
 
+    @ManyToMany(targetEntity = Hotel.class)
+    private List<Hotel> hotelList;
 
     public Integer getId() {
         return id;
@@ -68,6 +74,14 @@ public class LocalJourney implements Serializable, EntityIdInterface{
 
     public void setLanguageGuide(String languageGuide) {
         this.languageGuide = languageGuide;
+    }
+
+    public List<Hotel> getHotelList() {
+        return hotelList;
+    }
+
+    public void setHotelList(List<Hotel> hotelList) {
+        this.hotelList = hotelList;
     }
 }
 
