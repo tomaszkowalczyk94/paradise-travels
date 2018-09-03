@@ -1,14 +1,13 @@
 package paradiseTravels.bean;
 
+import paradiseTravels.bean.invoice.InvoiceBean;
 import paradiseTravels.bean.user.EntityBean;
 import paradiseTravels.dao.OfferDAO;
-import paradiseTravels.model.Offer;
-import paradiseTravels.model.Reservation;
-import paradiseTravels.model.ReservationStatus;
-import paradiseTravels.model.User;
+import paradiseTravels.model.*;
 import paradiseTravels.service.offer.OfferBuyRequestModel;
 
 import javax.inject.Inject;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +17,8 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
 
     @Inject
     ReservationBean reservationBean;
+    @Inject
+    InvoiceBean invoiceBean;
 
     public void buy(OfferBuyRequestModel offerBuyRequestModel, User user) throws Exception {
         Reservation reservation = new Reservation();
@@ -32,14 +33,26 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
 
         int days = daysBetween(reservation.getDateFrom(), reservation.getDateTo());
 
-
+        float dutyRate = (float) 1.23;
         float totalPrice = days*
                 reservation.getOffer().getPricePerDayPerPerson()*
                 offerBuyRequestModel.getNumberOfCustomers();
+        float priceNetto = totalPrice/dutyRate;
 
         reservation.setPrice(totalPrice);
         reservationBean.add(reservation);
+        LocalDateTime ldt = LocalDateTime.now();
+        Invoice invoice = new Invoice();
+        invoice.setDateOfPurchase(new Date());
+        invoice.setDateInvoice(new Date());
+        invoice.setDutyRate(dutyRate);
+        invoice.setPriceTotal(totalPrice);
+        invoice.setPriceNetto(priceNetto);
+        invoice.setReservation(reservation);
+        invoiceBean.add(invoice);
+
     }
+
 
     public List<Offer> findAllWithFillters(Date dateFrom,Date dateTo)
     {
