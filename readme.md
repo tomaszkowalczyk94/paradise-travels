@@ -229,8 +229,8 @@ response:
 ### usunięcie oferty
 DELETE /offers/3
 
-### filtr oferty po dacie
-* GET /offers/search?dateFrom=08-03-2019&dateTo=12-03-2019
+### filtry ofert
+* GET /offers/search?dateFrom=08-03-2019&dateTo=12-03-2019&location=Greece&priceFrom=150&priceTo=1190
 
 * format daty : dd-mm-rrrr
 

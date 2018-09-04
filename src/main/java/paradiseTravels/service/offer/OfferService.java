@@ -35,7 +35,7 @@ public class OfferService extends EntityService<Offer, OfferBean> {
     }
 
 
-    //offers/search?dateFrom=08-03-2019&dateTo=12-03-2019
+    //offers/search?dateFrom=08-03-2019&dateTo=12-03-2019&location=Poland&priceFrom=100&priceTo=1000
     @GET
     @Path("search")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -44,9 +44,12 @@ public class OfferService extends EntityService<Offer, OfferBean> {
 
         String dateTo =  request.getParameter("dateTo");
         String dateFrom = request.getParameter("dateFrom");
+        String location = request.getParameter("location");
+        String priceFrom = request.getParameter("priceFrom");
+        String priceTo = request.getParameter("priceTo");
 
 
-        return offerBean.findAllWithFillters(dateFrom,dateTo);
+        return offerBean.findAllWithFillters(dateFrom,dateTo,location,priceFrom,priceTo);
     }
 
 }

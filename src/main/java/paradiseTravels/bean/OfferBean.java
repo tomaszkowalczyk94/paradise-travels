@@ -27,7 +27,10 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
     @Inject
     LocalJourneyBean localJourneyBean;
 
+
+
     public final static float DUTY_RATE = 1.23f;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
     public void buy(OfferBuyRequestModel offerBuyRequestModel, User user) throws Exception {
 
@@ -75,15 +78,42 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
 
 
 
-    public List<Offer> findAllWithFillters(String dateFrom,String dateTo) throws ParseException {
+    public List<Offer> findAllWithFillters(String dateFrom, String dateTo, String location, String priceFrom, String priceTo) throws ParseException {
         Stream<Offer> offerStream = findAll().stream();
         offerStream = dateFromFillter(offerStream,dateFrom);
         offerStream = dateToFillter(offerStream,dateTo);
+        offerStream = locationFillter(offerStream,location);
+        offerStream = priceFromFillter(offerStream,priceFrom);
+        offerStream = priceToFillter(offerStream,priceTo);
 
         return  offerStream.collect(Collectors.toList());
     }
 
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    private Stream<Offer> priceFromFillter(Stream<Offer> offerStream, String priceFrom) {
+        if(priceFrom != null)
+        {
+            return offerStream.filter(e -> e.getPricePerDayPerPerson() >= Float.valueOf(priceFrom) );
+        }
+        return offerStream;
+    }
+
+    private Stream<Offer> priceToFillter(Stream<Offer> offerStream, String priceTo) {
+        if(priceTo != null)
+        {
+            return offerStream.filter(e -> e.getPricePerDayPerPerson() <= Float.valueOf(priceTo) );
+        }
+        return offerStream;
+    }
+
+    private Stream<Offer> locationFillter(Stream<Offer> offerStream, String location) {
+        if(location != null)
+        {
+           return offerStream.filter(e -> e.getHotel().getAddress().getCountry().equals(location));
+        }
+        return offerStream;
+    }
+
+
 
     private Stream<Offer> dateFromFillter(Stream<Offer> offerStream,String dateFrom) throws ParseException {
         if(dateFrom != null) {
