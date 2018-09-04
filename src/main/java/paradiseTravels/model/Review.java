@@ -13,16 +13,20 @@ import java.io.Serializable;
 @Table(name="review")
 public class Review implements Serializable, EntityIdInterface {
     private static final long serialVersionUID = 21651L;
+
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String description;
+
     @Min(0)
     @Max(5)
     private Integer stars;
+
     @ManyToOne
     private User user;
+
     @ManyToOne
     private Offer offer;
 
@@ -56,6 +60,14 @@ public class Review implements Serializable, EntityIdInterface {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Offer getOffer() {
+        return offer;
+    }
+
+    public void setOffer(Offer offer) {
+        this.offer = offer;
     }
 
     @Override

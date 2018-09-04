@@ -4,15 +4,18 @@ package paradiseTravels.model;
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="offer")
 public class Offer implements EntityIdInterface {
     private static final long serialVersionUID = 3342351L;
+
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @ManyToOne
     private Hotel hotel;
     private Date dateFrom;
@@ -26,7 +29,8 @@ public class Offer implements EntityIdInterface {
     @DecimalMin("0.0")
     private Float pricePerDayPerPerson;
 
-
+    @OneToMany(targetEntity = Review.class)
+    private List<Review> reviewList;
 
     public Float getPricePerDayPerPerson() {
         return pricePerDayPerPerson;
@@ -98,6 +102,14 @@ public class Offer implements EntityIdInterface {
 
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
+    }
+
+    public List<Review> getReviewList() {
+        return reviewList;
+    }
+
+    public void setReviewList(List<Review> reviewList) {
+        this.reviewList = reviewList;
     }
 
     @Override

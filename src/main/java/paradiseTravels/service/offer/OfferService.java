@@ -1,7 +1,10 @@
 package paradiseTravels.service.offer;
 
+import com.mashape.unirest.http.exceptions.UnirestException;
 import paradiseTravels.bean.OfferBean;
+import paradiseTravels.bean.PayuBean;
 import paradiseTravels.model.Offer;
+import paradiseTravels.model.Reservation;
 import paradiseTravels.model.User;
 import paradiseTravels.service.EntityService;
 import paradiseTravels.service.pojoResponse.PojoBooleanResponse;
@@ -43,4 +46,14 @@ public class OfferService extends EntityService<Offer, OfferBean> {
         return offerBean.findAllWithFillters(simpleDateFormat.parse( dateFrom),simpleDateFormat.parse(dateTo));
     }
 
+    @Inject
+    PayuBean payuBean;
+
+    @GET
+    @Path("test")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public void test() throws ParseException, UnirestException {
+        payuBean.initPayment(new Reservation());
+    }
 }

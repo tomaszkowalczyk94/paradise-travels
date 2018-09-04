@@ -31,9 +31,6 @@ public class Hotel implements Serializable, EntityIdInterface {
     @DecimalMax("5.5")
     private Float stars;
 
-    @OneToMany(targetEntity = Review.class)
-    private List<Review> reviewList;
-
     @Min(0)
     private Integer numberOfTwoPersonBed;
 
@@ -103,14 +100,6 @@ public class Hotel implements Serializable, EntityIdInterface {
         this.stars = stars;
     }
 
-    public List<Review> getReviewList() {
-        return reviewList;
-    }
-
-    public void setReviewList(List<Review> reviewList) {
-        this.reviewList = reviewList;
-    }
-
     @Override
     public String toString() {
         return "Hotel{" +
@@ -119,7 +108,6 @@ public class Hotel implements Serializable, EntityIdInterface {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", stars=" + stars +
-                ", reviewList=" + reviewList +
                 '}';
     }
 

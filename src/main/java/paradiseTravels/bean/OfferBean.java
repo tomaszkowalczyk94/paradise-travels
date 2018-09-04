@@ -25,6 +25,9 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
     @Inject
     LocalJourneyBean localJourneyBean;
 
+    @Inject
+    PayuBean payuBean;
+
     public final static float DUTY_RATE = 1.23f;
 
     public void buy(OfferBuyRequestModel offerBuyRequestModel, User user) throws Exception {
@@ -52,6 +55,9 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
         invoice.setReservation(reservation);
 
         invoiceBean.add(invoice);
+
+        payuBean.initPayment(reservation);
+
     }
 
     private float calculateTotalPrice(OfferBuyRequestModel offerBuyRequestModel) throws Exception {
