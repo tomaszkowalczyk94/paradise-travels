@@ -13,6 +13,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -33,14 +34,19 @@ public class OfferService extends EntityService<Offer, OfferBean> {
         return new PojoBooleanResponse(true);
     }
 
-    //offers/08-03-2019/12-03-2019
+
+    //offers/search?dateFrom=08-03-2019&dateTo=12-03-2019
     @GET
-    @Path("{dateFrom}/{dateTo}")
+    @Path("search")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Offer> findWithFillters(@PathParam("dateFrom") String dateFrom, @PathParam("dateTo") String dateTo) throws ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        return offerBean.findAllWithFillters(simpleDateFormat.parse( dateFrom),simpleDateFormat.parse(dateTo));
+    public List<Offer> findWithFillters( @Context HttpServletRequest request) throws ParseException {
+
+        String dateTo =  request.getParameter("dateTo");
+        String dateFrom = request.getParameter("dateFrom");
+
+
+        return offerBean.findAllWithFillters(dateFrom,dateTo);
     }
 
 }

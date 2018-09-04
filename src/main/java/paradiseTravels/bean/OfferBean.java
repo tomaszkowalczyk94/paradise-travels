@@ -7,6 +7,8 @@ import paradiseTravels.model.*;
 import paradiseTravels.service.offer.OfferBuyRequestModel;
 
 import javax.inject.Inject;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Date;
@@ -73,8 +75,7 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
 
 
 
-    public List<Offer> findAllWithFillters(Date dateFrom,Date dateTo)
-    {
+    public List<Offer> findAllWithFillters(String dateFrom,String dateTo) throws ParseException {
         Stream<Offer> offerStream = findAll().stream();
         offerStream = dateFromFillter(offerStream,dateFrom);
         offerStream = dateToFillter(offerStream,dateTo);
@@ -82,21 +83,22 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
         return  offerStream.collect(Collectors.toList());
     }
 
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-
-    private Stream<Offer> dateFromFillter(Stream<Offer> offerStream,Date dateFrom)
-    {
+    private Stream<Offer> dateFromFillter(Stream<Offer> offerStream,String dateFrom) throws ParseException {
         if(dateFrom != null) {
-            return offerStream.filter( e -> e.getDateFrom().before(dateFrom)
-                    && e.getDateFrom().before(dateFrom));
+            Date from = simpleDateFormat.parse(dateFrom);
+            return offerStream.filter( e -> e.getDateFrom().before(from)
+                    && e.getDateFrom().before(from));
         }
         else return offerStream;
     }
 
-    private Stream<Offer> dateToFillter(Stream<Offer> offerStream, Date dateTo) {
+    private Stream<Offer> dateToFillter(Stream<Offer> offerStream, String dateTo) throws ParseException {
         if(dateTo != null) {
-            return offerStream.filter( e -> e.getDateFrom().before(dateTo)
-                    && e.getDateTo().after(dateTo));
+            Date to = simpleDateFormat.parse(dateTo);
+            return offerStream.filter( e -> e.getDateFrom().before(to)
+                    && e.getDateTo().after(to));
         }
         else return offerStream;
 

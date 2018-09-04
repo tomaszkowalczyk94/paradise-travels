@@ -230,11 +230,11 @@ response:
 DELETE /offers/3
 
 ### filtr oferty po dacie
-* GET /offers/{dateFrom}/{dateTo}
+* GET /offers/search?dateFrom=08-03-2019&dateTo=12-03-2019
 
 * format daty : dd-mm-rrrr
 
-* przykład /offers/08-03-2019/12-03-2019
+* przykład /offers/search?dateFrom=08-03-2019&dateTo=12-03-2019
 
 
 # adress
