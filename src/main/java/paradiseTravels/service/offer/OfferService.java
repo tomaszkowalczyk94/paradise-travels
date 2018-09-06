@@ -1,5 +1,6 @@
 package paradiseTravels.service.offer;
 
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import paradiseTravels.bean.OfferBean;
 import paradiseTravels.bean.PayuBean;
@@ -15,8 +16,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -33,9 +32,24 @@ public class OfferService extends EntityService<Offer, OfferBean> {
     public PojoBooleanResponse buy(OfferBuyRequestModel offerBuyRequestModel, @Context HttpServletRequest request) throws Exception{
         Enumeration<String> attributeNames = request.getSession().getAttributeNames();
         request.getSession();
-        offerBean.buy(offerBuyRequestModel, (User)request.getSession().getAttribute("user"));
+        offerBean.reserve(offerBuyRequestModel, (User)request.getSession().getAttribute("user"));
         return new PojoBooleanResponse(true);
     }
+
+
+    @POST
+    @Path("buyAndPay")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public JsonNode buyAndPay(OfferBuyRequestModel offerBuyRequestModel, @Context HttpServletRequest request) throws Exception{
+        Enumeration<String> attributeNames = request.getSession().getAttributeNames();
+        request.getSession();
+        return offerBean.reserveAndPay(offerBuyRequestModel, (User)request.getSession().getAttribute("user")).getBody();
+    }
+
+
+
+
 
 
     //offers/search?dateFrom=08-03-2019&dateTo=12-03-2019&location=Poland&priceFrom=100&priceTo=1000
@@ -62,7 +76,7 @@ public class OfferService extends EntityService<Offer, OfferBean> {
     @Path("test")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void test() throws ParseException, UnirestException {
-        payuBean.initPayment(new Reservation());
+    public String test() throws ParseException, UnirestException {
+        return payuBean.initPaymentTest(new Reservation()).getBody().toString();
     }
 }

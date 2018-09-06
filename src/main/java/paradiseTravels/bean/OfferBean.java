@@ -1,5 +1,7 @@
 package paradiseTravels.bean;
 
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import paradiseTravels.bean.invoice.InvoiceBean;
 import paradiseTravels.bean.user.EntityBean;
 import paradiseTravels.dao.OfferDAO;
@@ -9,8 +11,6 @@ import paradiseTravels.service.offer.OfferBuyRequestModel;
 import javax.inject.Inject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,7 +35,7 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
     public final static float DUTY_RATE = 1.23f;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-    public void buy(OfferBuyRequestModel offerBuyRequestModel, User user) throws Exception {
+    public Reservation reserve(OfferBuyRequestModel offerBuyRequestModel, User user) throws Exception {
 
         Reservation reservation = new Reservation();
         reservation.setUser(user);
@@ -60,10 +60,17 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
         invoice.setReservation(reservation);
 
         invoiceBean.add(invoice);
+        return  reservation;
 
-        payuBean.initPayment(reservation);
 
     }
+
+    public HttpResponse<JsonNode> reserveAndPay(OfferBuyRequestModel offerBuyRequestModel, User user) throws Exception
+    {
+        Reservation reservation = reserve(offerBuyRequestModel, user);
+         return payuBean.initPayment(reservation);
+    }
+
 
     private float calculateTotalPrice(OfferBuyRequestModel offerBuyRequestModel) throws Exception {
 
