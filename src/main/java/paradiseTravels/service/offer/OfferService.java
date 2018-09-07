@@ -4,6 +4,7 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import paradiseTravels.bean.OfferBean;
 import paradiseTravels.bean.PayuBean;
+import paradiseTravels.bean.ReservationBean;
 import paradiseTravels.model.Offer;
 import paradiseTravels.model.Reservation;
 import paradiseTravels.model.User;
@@ -25,11 +26,17 @@ public class OfferService extends EntityService<Offer, OfferBean> {
     @Inject
     OfferBean offerBean;
 
+    @Inject
+    ReservationBean reservationBean;
+
+    @Inject
+    PayuBean payuBean;
+
     @POST
     @Path("buy")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public PojoBooleanResponse buy(OfferBuyRequestModel offerBuyRequestModel, @Context HttpServletRequest request) throws Exception{
+    public PojoBooleanResponse reserve(OfferBuyRequestModel offerBuyRequestModel, @Context HttpServletRequest request) throws Exception{
         Enumeration<String> attributeNames = request.getSession().getAttributeNames();
         request.getSession();
         offerBean.reserve(offerBuyRequestModel, (User)request.getSession().getAttribute("user"));
@@ -38,14 +45,26 @@ public class OfferService extends EntityService<Offer, OfferBean> {
 
 
     @POST
-    @Path("buyAndPay")
+    @Path("reserveAndPay")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public JsonNode buyAndPay(OfferBuyRequestModel offerBuyRequestModel, @Context HttpServletRequest request) throws Exception{
+    public JsonNode reserveAndPay(OfferBuyRequestModel offerBuyRequestModel, @Context HttpServletRequest request) throws Exception{
         Enumeration<String> attributeNames = request.getSession().getAttributeNames();
         request.getSession();
         return offerBean.reserveAndPay(offerBuyRequestModel, (User)request.getSession().getAttribute("user")).getBody();
     }
+
+    @GET
+    @Path("pay/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public JsonNode payForReservation(@PathParam("id") Integer reservationId, @Context HttpServletRequest request) throws Exception{
+
+        return payuBean.initPayment(reservationBean.findById(reservationId)).getBody();
+    }
+
+
+
 
 
 
@@ -69,8 +88,7 @@ public class OfferService extends EntityService<Offer, OfferBean> {
         return offerBean.findAllWithFillters(dateFrom,dateTo,location,priceFrom,priceTo);
     }
 
-    @Inject
-    PayuBean payuBean;
+
 
     @GET
     @Path("test")

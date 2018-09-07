@@ -6,12 +6,17 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import paradiseTravels.model.Reservation;
+import paradiseTravels.model.ReservationStatus;
 
+import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PayuBean {
+
+    @Inject
+    ReservationBean reservationBean;
 
     /**
      curl -X POST https://secure.snd.payu.com/api/v2_1/orders \
@@ -55,7 +60,7 @@ public class PayuBean {
      Protokół OAuth - client_secret:	9ed63952ca644415a311e93b429c9c84 */
 
     public static class PayuUInitRequestObject implements Serializable {
-        public String notifyUrl = "http://77.55.193.96:8080/paradiseTravels/offers/notify"; // endpoint do odsyłania statusu
+        public String notifyUrl = "http://77.55.193.96:8080/paradiseTravels/reservations/payu/notify"; // endpoint do odsyłania statusu
         public String customerIp= "192.168.1.17";
         public String merchantPosId = "339155";
         public String description = "xxx";
@@ -77,7 +82,7 @@ public class PayuBean {
     }
 
 
-    public HttpResponse<JsonNode> initPayment(Reservation reservation) throws UnirestException {
+    public HttpResponse<JsonNode> initPayment(Reservation reservation) throws Exception {
         HttpResponse<JsonNode> auth = auth();
         if(auth.getStatus() == 200) {
             Gson gson = new Gson();
@@ -91,6 +96,13 @@ public class PayuBean {
                     .header("Authorization", "Bearer " + access_token)
                     .header("Content-Type","application/json")
                     .body(jsonBuyRequest).asJson();
+            if(jsonNodeHttpResponse.getStatus() == 200)
+            {
+                reservation.setReservationStatus(ReservationStatus.PAYMENT_PROCESSED);
+                reservation.setPayuOrderId((String) jsonNodeHttpResponse.getBody().getObject().get("orderId"));
+                reservationBean.update(reservation);
+            }
+
             return  jsonNodeHttpResponse;
         }
         return  null;

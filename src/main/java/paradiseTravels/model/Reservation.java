@@ -29,6 +29,8 @@ public class Reservation implements EntityIdInterface {
     private Date dateFrom;
     private Date dateTo;
 
+    private String payuOrderId;//do sprawdzania czy platnosc przeszla
+
    /*cena całosciowa */
     private Float priceTotal;
 
@@ -135,4 +137,11 @@ public class Reservation implements EntityIdInterface {
     }
 
 
+    public String getPayuOrderId() {
+        return payuOrderId;
+    }
+
+    public void setPayuOrderId(String payuOrderId) {
+        this.payuOrderId = payuOrderId;
+    }
 }
