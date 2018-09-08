@@ -33,7 +33,7 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
     PayuBean payuBean;
 
     public final static float DUTY_RATE = 1.23f;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public Reservation reserve(OfferBuyRequestModel offerBuyRequestModel, User user) throws Exception {
 

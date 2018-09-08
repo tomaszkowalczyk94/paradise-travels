@@ -230,11 +230,11 @@ response:
 DELETE /offers/3
 
 ### filtry ofert
-* GET /offers/search?dateFrom=08-03-2019&dateTo=12-03-2019&location=Greece&priceFrom=150&priceTo=1190
+* GET /offers/search?dateFrom=2019-03-08&dateTo=2019-03-12&location=Greece&priceFrom=150&priceTo=1190
 
-* format daty : dd-mm-rrrr
+* format daty : rrrr-mm-dd
 
-* przykład /offers/search?dateFrom=08-03-2019&dateTo=12-03-2019
+* przykład /offers/search?dateFrom=2019-03-08&dateTo=2019-03-12
 
 
 # adress
@@ -291,3 +291,22 @@ DELETE /offers/3
 * generowanie pdf po id faktury /invoices/{id}/pdf
 * generowanie pdf po id rezerwacji /invoices/reservation/{id}/pdf
 
+# platnosci
+
+*  POST offers/buy robi rezerwacje ( najlepiej zmienić pozniej na /reserve)
+*  POST offers/reserveAndPay robi rezerwacje i inicjuje platnosc payU
+ jesli uda sie nawizac polaczeni z payU zwraca  jsona z redirect url na ktory trzeba przekierować uzytkownika:
+ ```json
+ {
+  "redirectUri": "https://merch-prod.snd.payu.com/pay/?orderId=SR3MHL4QPL180909GUEST000P01&token=eyJhbGciOiJIUzI1NiJ9.eyJvcmRlcklkIjoiU1IzTUhMNFFQTDE4MDkwOUdVRVNUMDAwUDAxIiwicG9zSWQiOiJsd2plVWp2SSIsImF1dGhvcml0aWVzIjpbIlJPTEVfQ0xJRU5UIl0sImV4cCI6MTUzNjUzNTQ0OSwiaXNzIjoiUEFZVSIsImF1ZCI6ImFwaS1nYXRld2F5Iiwic3ViIjoiUGF5VSBzdWJqZWN0IiwianRpIjoiMDgwZmFjZWMtNjIyMy00MmVmLWEwMzctMDllYjgxMzVkMTdiIn0.2EB3W1hkx9KZONoxIhIiRiaU2EWMWmmUgquOQOFrKgg",
+  "orderId": "SR3MHL4QPL180909GUEST000P01",
+  "status": {
+  "statusCode": "SUCCESS"
+  }
+  }
+ ```
+ Status rezerwacji ustawiany jest na PAYMENT_PROCESSED.
+ 
+ payU natomiast o transakcji powiadomi endpoint reservations/notify ktory ustawi rezerwacje na PAID razie powodzenia.
+ 
+ * GET offers/test  - testuje payU,

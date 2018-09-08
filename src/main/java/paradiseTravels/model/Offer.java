@@ -3,6 +3,7 @@ package paradiseTravels.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +25,12 @@ public class Offer implements EntityIdInterface {
     private boolean promoted;
     private String description;
     private String shortDescription;
+
+
+
+    @ElementCollection
+    @CollectionTable(name = "pictures")
+    private List<String> pictures = new ArrayList<>();
 
 
     @DecimalMin("0.0")
@@ -110,6 +117,14 @@ public class Offer implements EntityIdInterface {
 
     public void setReviewList(List<Review> reviewList) {
         this.reviewList = reviewList;
+    }
+
+    public List<String> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<String> pictures) {
+        this.pictures = pictures;
     }
 
     @Override

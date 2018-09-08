@@ -31,6 +31,7 @@ public class Hotel implements Serializable, EntityIdInterface {
     @DecimalMax("5.5")
     private Float stars;
 
+
     @Min(0)
     private Integer numberOfTwoPersonBed;
 
