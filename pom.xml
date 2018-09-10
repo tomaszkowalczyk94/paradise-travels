@@ -102,6 +102,8 @@
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
         </dependency>
+        <!-- END WILDFLY -->
+
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
@@ -119,8 +121,13 @@
             <artifactId>unirest-java</artifactId>
             <version>1.4.9</version>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.9.0</version>
+            <scope>provided</scope>
+        </dependency>
 
-        <!-- END WILDFLY -->
 
     </dependencies>
 
@@ -138,15 +145,15 @@
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>${version.wildfly.maven.plugin}</version>
-                <!--<configuration>-->
+                <configuration>
                     <!--<java-opts>-->
                         <!--<java-opt>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005</java-opt>-->
                     <!--</java-opts>-->
                     <!--<hostname>77.55.193.96</hostname>-->
-                    <!--<port>9990</port>-->
-                    <!--<username>tomek</username>-->
-                    <!--<password>qwerty</password>-->
-                <!--</configuration>-->
+                    <port>9990</port>
+                    <username>tomek</username>
+                    <password>qwerty</password>
+                </configuration>
 
             </plugin>
 

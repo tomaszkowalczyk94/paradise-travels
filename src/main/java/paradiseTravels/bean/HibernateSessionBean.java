@@ -17,11 +17,14 @@ public class HibernateSessionBean {
 
     private SessionFactory sessionFactory;
     private Session session;
+
     public HibernateSessionBean() {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
+
             sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
+
         this.session = sessionFactory.openSession();
         this.session.setCacheMode(CacheMode.IGNORE);
     }

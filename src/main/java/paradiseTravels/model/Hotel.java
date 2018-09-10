@@ -58,7 +58,7 @@ public class Hotel implements Serializable, EntityIdInterface {
         this.localJourneyList = localJourneyList;
     }
 
-    @ManyToMany(targetEntity = LocalJourney.class)
+    @OneToMany(mappedBy="hotel")
     private List<LocalJourney> localJourneyList;
 
     public Integer getId() {

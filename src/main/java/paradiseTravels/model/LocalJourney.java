@@ -3,9 +3,12 @@ package paradiseTravels.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="local_journey")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class LocalJourney implements Serializable, EntityIdInterface{
 
     private static final long serialVersionUID = 143215L;
@@ -21,8 +24,8 @@ public class LocalJourney implements Serializable, EntityIdInterface{
     private Integer durationTimeMin;
     private String languageGuide;
 
-    @ManyToMany(targetEntity = Hotel.class)
-    private List<Hotel> hotelList;
+    @ManyToOne
+    private Hotel hotel;
 
     public Integer getId() {
         return id;
@@ -76,12 +79,12 @@ public class LocalJourney implements Serializable, EntityIdInterface{
         this.languageGuide = languageGuide;
     }
 
-    public List<Hotel> getHotelList() {
-        return hotelList;
+    public Hotel getHotel() {
+        return hotel;
     }
 
-    public void setHotelList(List<Hotel> hotelList) {
-        this.hotelList = hotelList;
+    public void setHotelList(Hotel hotel) {
+        this.hotel = hotel;
     }
 }
 
