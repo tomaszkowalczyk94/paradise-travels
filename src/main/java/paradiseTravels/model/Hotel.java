@@ -1,5 +1,8 @@
 package paradiseTravels.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
@@ -10,6 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name="hotel")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Hotel implements Serializable, EntityIdInterface {
 
     private static final long serialVersionUID = 3132L;

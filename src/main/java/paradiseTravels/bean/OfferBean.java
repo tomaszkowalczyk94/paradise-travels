@@ -46,6 +46,11 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
         reservation.setOffer(this.findById(offerBuyRequestModel.getOfferId()));
         reservation.setReservationStatus(ReservationStatus.RESERVED);
 
+        for(int id : offerBuyRequestModel.getLocalJourneyIds()) {
+            LocalJourney localJourney = localJourneyBean.getEntityDao().findById(id);
+            reservation.getLocalJourneyList().add(localJourney);
+        }
+
         float totalPrice = calculateTotalPrice(offerBuyRequestModel);
 
         reservation.setPrice(totalPrice);
@@ -61,8 +66,6 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
 
         invoiceBean.add(invoice);
         return  reservation;
-
-
     }
 
     public HttpResponse<JsonNode> reserveAndPay(OfferBuyRequestModel offerBuyRequestModel, User user) throws Exception

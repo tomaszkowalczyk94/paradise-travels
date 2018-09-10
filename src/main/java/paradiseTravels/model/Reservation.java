@@ -3,7 +3,9 @@ package paradiseTravels.model;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.xml.crypto.Data;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="reservation")
@@ -20,6 +22,9 @@ public class Reservation implements EntityIdInterface {
     private User user;
     @ManyToOne
     private Offer offer;
+
+    @ManyToMany
+    private List<LocalJourney> localJourneyList = new ArrayList<>();
 
     @Min(0)
     private Integer numberOfTwoPersonBed;
@@ -143,5 +148,13 @@ public class Reservation implements EntityIdInterface {
 
     public void setPayuOrderId(String payuOrderId) {
         this.payuOrderId = payuOrderId;
+    }
+
+    public List<LocalJourney> getLocalJourneyList() {
+        return localJourneyList;
+    }
+
+    public void setLocalJourneyList(List<LocalJourney> localJourneyList) {
+        this.localJourneyList = localJourneyList;
     }
 }
