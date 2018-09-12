@@ -30,11 +30,12 @@ public class PayuBean {
         public String merchantPosId = "339155";
         public String description = "xxx";
         public String currencyCode = "PLN";
+        public String continueUrl = "http://localhost:4200/profile?paid=1";
         public String extOrderId;// id reserwacji dzieki ktoremu mamy potwierdzenie
         public int totalAmount;
         public List<Product> products = new ArrayList<>();
     }
-
+//
     public static class Product implements Serializable{
         public Product(String name, int unitPrice) {
             this.name = name;

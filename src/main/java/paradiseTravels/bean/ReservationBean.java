@@ -14,4 +14,10 @@ public class ReservationBean extends EntityBean<Reservation, ReservationDAO> {
         reservation.setReservationStatus(ReservationStatus.PAID);
         update(reservation);
     }
+
+    public void markAsCanceled(Integer reservationID) throws Exception {
+        Reservation reservation = findById(reservationID);
+        reservation.setReservationStatus(ReservationStatus.CANCELED);
+        update(reservation);
+    }
 }

@@ -40,15 +40,6 @@ public class OfferService extends EntityService<Offer, OfferBean> {
         return new PrimitiveStringResponse(paymentRedirectUrl.toExternalForm());
     }
 
-//    @GET
-//    @Path("pay/{id}")
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public JsonNode payForReservation(@PathParam("id") Integer reservationId, @Context HttpServletRequest request) throws Exception{
-//
-//        return payuBean.initPayment(reservationBean.findById(reservationId)).getBody();
-//    }
-
     //offers/search?dateFrom=08-03-2019&dateTo=12-03-2019&location=Poland&priceFrom=100&priceTo=1000
     @GET
     @Path("search")
