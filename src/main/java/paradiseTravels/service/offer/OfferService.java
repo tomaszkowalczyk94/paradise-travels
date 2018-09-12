@@ -36,7 +36,13 @@ public class OfferService extends EntityService<Offer, OfferBean> {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public PrimitiveStringResponse reserveAndPay(OfferBuyRequestModel offerBuyRequestModel, @Context HttpServletRequest request) throws Exception{
-        URL paymentRedirectUrl = offerBean.reserveAndPay(offerBuyRequestModel, (User) request.getSession().getAttribute("user"));
+        User user = (User) request.getSession().getAttribute("user");
+
+        if(user == null) {
+            throw new Exception("you must be logged");
+        }
+
+        URL paymentRedirectUrl = offerBean.reserveAndPay(offerBuyRequestModel, user);
         return new PrimitiveStringResponse(paymentRedirectUrl.toExternalForm());
     }
 

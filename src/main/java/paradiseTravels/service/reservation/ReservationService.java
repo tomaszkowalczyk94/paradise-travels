@@ -32,8 +32,6 @@ public class ReservationService extends EntityService<Reservation, ReservationBe
         public void setOrder(PayUOrderModel order) {
             this.order = order;
         }
-
-
     }
 
     public static class PayUOrderModel {
