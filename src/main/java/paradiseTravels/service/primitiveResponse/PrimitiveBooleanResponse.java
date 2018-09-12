@@ -1,6 +1,6 @@
-package paradiseTravels.service.pojoResponse;
+package paradiseTravels.service.primitiveResponse;
 
-public class PojoBooleanResponse {
+public class PrimitiveBooleanResponse {
     public boolean value;
 
     public boolean isValue() {
@@ -11,10 +11,10 @@ public class PojoBooleanResponse {
         this.value = value;
     }
 
-    public PojoBooleanResponse(boolean value) {
+    public PrimitiveBooleanResponse(boolean value) {
         this.value = value;
     }
 
-    public PojoBooleanResponse() {
+    public PrimitiveBooleanResponse() {
     }
 }

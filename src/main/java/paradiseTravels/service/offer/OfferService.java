@@ -1,21 +1,20 @@
 package paradiseTravels.service.offer;
 
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.exceptions.UnirestException;
 import paradiseTravels.bean.OfferBean;
-import paradiseTravels.bean.PayuBean;
+import paradiseTravels.bean.payU.PayuBean;
 import paradiseTravels.bean.ReservationBean;
 import paradiseTravels.model.Offer;
-import paradiseTravels.model.Reservation;
 import paradiseTravels.model.User;
 import paradiseTravels.service.EntityService;
-import paradiseTravels.service.pojoResponse.PojoBooleanResponse;
+import paradiseTravels.service.primitiveResponse.PrimitiveBooleanResponse;
+import paradiseTravels.service.primitiveResponse.PrimitiveStringResponse;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import java.net.URL;
 import java.text.ParseException;
 import java.util.Enumeration;
 import java.util.List;
@@ -33,43 +32,22 @@ public class OfferService extends EntityService<Offer, OfferBean> {
     PayuBean payuBean;
 
     @POST
-    @Path("buy")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public PojoBooleanResponse reserve(OfferBuyRequestModel offerBuyRequestModel, @Context HttpServletRequest request) throws Exception{
-        Enumeration<String> attributeNames = request.getSession().getAttributeNames();
-        request.getSession();
-        offerBean.reserve(offerBuyRequestModel, (User)request.getSession().getAttribute("user"));
-        return new PojoBooleanResponse(true);
-    }
-
-
-    @POST
     @Path("reserveAndPay")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public JsonNode reserveAndPay(OfferBuyRequestModel offerBuyRequestModel, @Context HttpServletRequest request) throws Exception{
-        Enumeration<String> attributeNames = request.getSession().getAttributeNames();
-        request.getSession();
-        return offerBean.reserveAndPay(offerBuyRequestModel, (User)request.getSession().getAttribute("user")).getBody();
+    public PrimitiveStringResponse reserveAndPay(OfferBuyRequestModel offerBuyRequestModel, @Context HttpServletRequest request) throws Exception{
+        URL paymentRedirectUrl = offerBean.reserveAndPay(offerBuyRequestModel, (User) request.getSession().getAttribute("user"));
+        return new PrimitiveStringResponse(paymentRedirectUrl.toExternalForm());
     }
 
-    @GET
-    @Path("pay/{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public JsonNode payForReservation(@PathParam("id") Integer reservationId, @Context HttpServletRequest request) throws Exception{
-
-        return payuBean.initPayment(reservationBean.findById(reservationId)).getBody();
-    }
-
-
-
-
-
-
-
-
+//    @GET
+//    @Path("pay/{id}")
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public JsonNode payForReservation(@PathParam("id") Integer reservationId, @Context HttpServletRequest request) throws Exception{
+//
+//        return payuBean.initPayment(reservationBean.findById(reservationId)).getBody();
+//    }
 
     //offers/search?dateFrom=08-03-2019&dateTo=12-03-2019&location=Poland&priceFrom=100&priceTo=1000
     @GET
@@ -88,13 +66,4 @@ public class OfferService extends EntityService<Offer, OfferBean> {
         return offerBean.findAllWithFillters(dateFrom,dateTo,location,priceFrom,priceTo);
     }
 
-
-
-    @GET
-    @Path("test")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public String test() throws ParseException, UnirestException {
-        return payuBean.initPaymentTest(new Reservation()).getBody().toString();
-    }
 }

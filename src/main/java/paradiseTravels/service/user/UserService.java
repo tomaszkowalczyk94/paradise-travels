@@ -4,7 +4,7 @@ import paradiseTravels.bean.user.AuthBean;
 import paradiseTravels.bean.user.UserBean;
 import paradiseTravels.model.User;
 import paradiseTravels.service.EntityService;
-import paradiseTravels.service.pojoResponse.PojoBooleanResponse;
+import paradiseTravels.service.primitiveResponse.PrimitiveBooleanResponse;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -34,22 +34,22 @@ public class UserService extends EntityService<User, UserBean>
     @GET
     @Path("/login-is-exist/{login}")
     @Produces(MediaType.APPLICATION_JSON)
-    public PojoBooleanResponse loginIsExist(@PathParam("login") String username) throws Exception{
+    public PrimitiveBooleanResponse loginIsExist(@PathParam("login") String username) throws Exception{
 
-        PojoBooleanResponse pojoBooleanResponse = new PojoBooleanResponse();
-        pojoBooleanResponse.setValue(bean.loginIsExist(username));
+        PrimitiveBooleanResponse primitiveBooleanResponse = new PrimitiveBooleanResponse();
+        primitiveBooleanResponse.setValue(bean.loginIsExist(username));
 
-        return pojoBooleanResponse;
+        return primitiveBooleanResponse;
     }
 
     @GET
     @Path("/email-is-exist/{email}")
     @Produces(MediaType.APPLICATION_JSON)
-    public PojoBooleanResponse emailIsExist(@PathParam("email") String email) throws Exception{
+    public PrimitiveBooleanResponse emailIsExist(@PathParam("email") String email) throws Exception{
 
-        PojoBooleanResponse pojoBooleanResponse = new PojoBooleanResponse();
-        pojoBooleanResponse.setValue(bean.emailIsExist(email));
+        PrimitiveBooleanResponse primitiveBooleanResponse = new PrimitiveBooleanResponse();
+        primitiveBooleanResponse.setValue(bean.emailIsExist(email));
 
-        return pojoBooleanResponse;
+        return primitiveBooleanResponse;
     }
 }

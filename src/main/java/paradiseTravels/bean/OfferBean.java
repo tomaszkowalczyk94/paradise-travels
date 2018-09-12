@@ -3,12 +3,14 @@ package paradiseTravels.bean;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import paradiseTravels.bean.invoice.InvoiceBean;
+import paradiseTravels.bean.payU.PayuBean;
 import paradiseTravels.bean.user.EntityBean;
 import paradiseTravels.dao.OfferDAO;
 import paradiseTravels.model.*;
 import paradiseTravels.service.offer.OfferBuyRequestModel;
 
 import javax.inject.Inject;
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,15 +29,28 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
     @Inject
     LocalJourneyBean localJourneyBean;
 
-
-
     @Inject
     PayuBean payuBean;
 
     public final static float DUTY_RATE = 1.23f;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public Reservation reserve(OfferBuyRequestModel offerBuyRequestModel, User user) throws Exception {
+    /**
+     *
+     * @param offerBuyRequestModel
+     * @param user
+     * @return zwraca adres strony pod którą klient dokonuje płatności
+     * @throws Exception
+     */
+    public URL reserveAndPay(OfferBuyRequestModel offerBuyRequestModel, User user) throws Exception
+    {
+        Reservation reservation = reserve(offerBuyRequestModel, user);
+        return payuBean.initPayment(reservation);
+    }
+
+    private Reservation reserve(OfferBuyRequestModel offerBuyRequestModel, User user) throws Exception {
+
+        float totalPrice = calculateTotalPrice(offerBuyRequestModel);
 
         Reservation reservation = new Reservation();
         reservation.setUser(user);
@@ -45,13 +60,12 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
         reservation.setNumberOfTwoPersonBed(offerBuyRequestModel.getNumberOfTwoPersonBed());
         reservation.setOffer(this.findById(offerBuyRequestModel.getOfferId()));
         reservation.setReservationStatus(ReservationStatus.RESERVED);
+        reservation.setPrice(totalPrice);
 
         for(int id : offerBuyRequestModel.getLocalJourneyIds()) {
             LocalJourney localJourney = localJourneyBean.getEntityDao().findById(id);
             reservation.getLocalJourneyList().add(localJourney);
         }
-
-        float totalPrice = calculateTotalPrice(offerBuyRequestModel);
 
         reservation.setPrice(totalPrice);
         reservationBean.add(reservation);
@@ -67,13 +81,6 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
         invoiceBean.add(invoice);
         return  reservation;
     }
-
-    public HttpResponse<JsonNode> reserveAndPay(OfferBuyRequestModel offerBuyRequestModel, User user) throws Exception
-    {
-        Reservation reservation = reserve(offerBuyRequestModel, user);
-         return payuBean.initPayment(reservation);
-    }
-
 
     private float calculateTotalPrice(OfferBuyRequestModel offerBuyRequestModel) throws Exception {
 
