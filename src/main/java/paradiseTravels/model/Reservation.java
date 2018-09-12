@@ -18,9 +18,11 @@ public class Reservation implements EntityIdInterface {
 
     @ManyToOne
     private Room room;
-    @ManyToOne
+
+    @ManyToOne(optional = false)
     private User user;
-    @ManyToOne
+
+    @ManyToOne(optional = false)
     private Offer offer;
 
     @ManyToMany
