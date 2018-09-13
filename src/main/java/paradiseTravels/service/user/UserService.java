@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 @Path("/users")
 public class UserService extends EntityService<User, UserBean>
@@ -51,5 +52,23 @@ public class UserService extends EntityService<User, UserBean>
         primitiveBooleanResponse.setValue(bean.emailIsExist(email));
 
         return primitiveBooleanResponse;
+    }
+
+    @Override
+    @Path("/unsupported")
+    public List<User> getAll() throws Exception {
+        throw new Exception("Unsupported");
+    }
+
+    @GET
+    @Path("/")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<User> getAll(@Context HttpServletRequest request) throws Exception {
+        User user = (User) request.getSession().getAttribute("user");
+
+        if((user == null) || !user.getRole().equals("admin")) {
+            throw new Exception("you must be logged as admin");
+        }
+        else return super.getAll();
     }
 }
