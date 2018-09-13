@@ -107,7 +107,7 @@ response:
 ```
 
 ### aktualnie zalogowany users
-GET /users/logged
+GET /users/logged 
 
 response:
 ```json
@@ -196,13 +196,13 @@ response:
 ```
 
 ### lista userów
-GET /users
+GET /users ( dziala tylko jesli zalogujemy sie jako admin)
 
 ### konkretny user
 GET /users/ID_USERA
 
 ### usunięcie usera
-DELETE /users/ID_USERA
+DELETE /users/ID_USERA ( dziala tylko jesli zalogujemy sie jako admin)
 
 ### update usera
 PUT /users/ID_USERA
