@@ -3,12 +3,11 @@ package paradiseTravels.service.offer;
 import paradiseTravels.bean.AddressBean;
 import paradiseTravels.bean.HotelBean;
 import paradiseTravels.bean.OfferBean;
-import paradiseTravels.bean.payU.PayuBean;
 import paradiseTravels.bean.ReservationBean;
+import paradiseTravels.bean.payU.PayuBean;
 import paradiseTravels.model.Offer;
 import paradiseTravels.model.User;
 import paradiseTravels.service.EntityService;
-import paradiseTravels.service.primitiveResponse.PrimitiveBooleanResponse;
 import paradiseTravels.service.primitiveResponse.PrimitiveStringResponse;
 
 import javax.inject.Inject;
@@ -18,7 +17,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import java.net.URL;
 import java.text.ParseException;
-import java.util.Enumeration;
 import java.util.List;
 
 @Path("/offers")

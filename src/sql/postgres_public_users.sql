@@ -1,3 +1,0 @@
-INSERT INTO public.users (id, firstname, lastname, address_id, email, login, password, role) VALUES (1, 'Mykola', 'Bohdan', 1, 'admin@paradise-travel.com', 'admin', '1111', 'admin');
-INSERT INTO public.users (id, firstname, lastname, address_id, email, login, password, role) VALUES (2, 'Tomek', 'Pierwszy', 8, 'tomek@paradise-travel.com', 'tomek', '2222', 'user');
-INSERT INTO public.users (id, firstname, lastname, address_id, email, login, password, role) VALUES (3, 'Michal', 'Kundera', 9, 'kundera@paradise-travel.com', 'michal', '3333', 'user');

@@ -1,7 +1,5 @@
 package paradiseTravels.bean;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
 import paradiseTravels.bean.invoice.InvoiceBean;
 import paradiseTravels.bean.payU.PayuBean;
 import paradiseTravels.bean.user.EntityBean;
@@ -15,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -102,6 +101,7 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
 
 
     public List<Offer> findAllWithFillters(String dateFrom, String dateTo, String location, String priceFrom, String priceTo) throws ParseException {
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         Stream<Offer> offerStream = findAll().stream();
         offerStream = dateFromFillter(offerStream,dateFrom);
         offerStream = dateToFillter(offerStream,dateTo);
@@ -140,9 +140,11 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
 
     private Stream<Offer> dateFromFillter(Stream<Offer> offerStream,String dateFrom) throws ParseException {
         if(dateFrom != null) {
+
             Date from = simpleDateFormat.parse(dateFrom);
-            return offerStream.filter( e -> e.getDateFrom().before(from)
-                    && e.getDateFrom().before(from));
+
+            return offerStream.filter( e -> (e.getDateFrom().before(from) || e.getDateFrom().equals(from))
+                                                && e.getDateTo().after(from));
         }
         else return offerStream;
     }
@@ -151,7 +153,7 @@ public class OfferBean extends EntityBean<Offer, OfferDAO> {
         if(dateTo != null) {
             Date to = simpleDateFormat.parse(dateTo);
             return offerStream.filter( e -> e.getDateFrom().before(to)
-                    && e.getDateTo().after(to));
+                    && (e.getDateTo().after(to) || e.getDateTo().equals(to)) );
         }
         else return offerStream;
 

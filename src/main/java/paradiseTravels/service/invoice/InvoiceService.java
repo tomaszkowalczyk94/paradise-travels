@@ -1,10 +1,8 @@
 package paradiseTravels.service.invoice;
 
-import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
 import paradiseTravels.bean.invoice.InvoiceBean;
+import paradiseTravels.bean.pdf.PdfWriterBean;
 import paradiseTravels.model.Invoice;
 import paradiseTravels.service.EntityService;
 
@@ -13,11 +11,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
-import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 
 @Path("/invoices")
 
@@ -25,6 +20,9 @@ public class InvoiceService extends EntityService<Invoice,InvoiceBean> {
 
     @Inject
     private InvoiceBean invoiceBean;
+
+    @Inject
+    private PdfWriterBean pdfWriterBean;
 
     @GET
     @Path("/{id}/pdf")

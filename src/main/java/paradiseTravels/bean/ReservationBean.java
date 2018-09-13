@@ -5,8 +5,6 @@ import paradiseTravels.dao.ReservationDAO;
 import paradiseTravels.model.Reservation;
 import paradiseTravels.model.ReservationStatus;
 
-import javax.inject.Inject;
-
 public class ReservationBean extends EntityBean<Reservation, ReservationDAO> {
 
     public void markAsPaid(Integer reservationID) throws Exception {

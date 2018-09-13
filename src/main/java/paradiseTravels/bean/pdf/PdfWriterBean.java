@@ -26,6 +26,15 @@ public class PdfWriterBean {
         document.close();
     }
 
+    public static void getErrorPdf(OutputStream outputStream,String error) throws DocumentException {
+        Document document = new Document();
+        PdfWriter.getInstance(document, outputStream);
+        document.open();
+        document.addTitle("Error");
+        document.add(new Paragraph(new Chunk(error)));
+        document.close();
+    }
+
 
     private void prepareInvoicePdfInformation(Document document,Invoice invoice) throws DocumentException {
         List<Chunk> chunkList = new ArrayList<>();
