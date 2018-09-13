@@ -23,7 +23,10 @@ public class Offer implements EntityIdInterface {
     private Date dateTo;
     private String name;
     private boolean promoted;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
+
     private String shortDescription;
 
 

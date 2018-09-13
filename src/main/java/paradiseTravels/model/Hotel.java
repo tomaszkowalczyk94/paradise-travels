@@ -29,6 +29,7 @@ public class Hotel implements Serializable, EntityIdInterface {
 
     private String name;
 
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @DecimalMin("0.0")
