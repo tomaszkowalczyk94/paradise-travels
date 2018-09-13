@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <package id="1" language="java" name="paradiseTravels.bean" project="paradisetravels" 
+    file="/paradisetravels/src/main/java/paradiseTravels/bean" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="497" y="138"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="2" language="java" name="paradiseTravels.dao" project="paradisetravels" 
+    file="/paradisetravels/src/main/java/paradiseTravels/dao" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="299" y="141"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="3" language="java" name="paradiseTravels.model" project="paradisetravels" 
+    file="/paradisetravels/src/main/java/paradiseTravels/model" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="122" y="134"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="4" language="java" name="paradiseTravels.service" project="paradisetravels" 
+    file="/paradisetravels/src/main/java/paradiseTravels/service" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="738" y="135"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="5" language="java" name="paradiseTravels.bean.invoice" project="paradisetravels" 
+    file="/paradisetravels/src/main/java/paradiseTravels/bean/invoice" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="373" y="315"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="6" language="java" name="paradiseTravels.bean.payU" project="paradisetravels" 
+    file="/paradisetravels/src/main/java/paradiseTravels/bean/payU" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="362" y="379"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="7" language="java" name="paradiseTravels.bean.pdf" project="paradisetravels" 
+    file="/paradisetravels/src/main/java/paradiseTravels/bean/pdf" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="351" y="448"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="8" language="java" name="paradiseTravels.bean.user" project="paradisetravels" 
+    file="/paradisetravels/src/main/java/paradiseTravels/bean/user" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="354" y="538"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="9" language="java" name="paradiseTravels.service.address" project="paradisetravels" 
+    file="/paradisetravels/src/main/java/paradiseTravels/service/address" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="708" y="229"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="10" language="java" name="paradiseTravels.service.hotel" project="paradisetravels" 
+    file="/paradisetravels/src/main/java/paradiseTravels/service/hotel" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="706" y="289"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="11" language="java" name="paradiseTravels.service.invoice" project="paradisetravels" 
+    file="/paradisetravels/src/main/java/paradiseTravels/service/invoice" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="714" y="354"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="12" language="java" name="paradiseTravels.service.review" project="paradisetravels" 
+    file="/paradisetravels/src/main/java/paradiseTravels/service/review" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="715" y="433"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="13" language="java" name="paradiseTravels.service.user" project="paradisetravels" 
+    file="/paradisetravels/src/main/java/paradiseTravels/service/user" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="746" y="512"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="14" language="java" name="paradiseTravels.service.room" project="paradisetravels" 
+    file="/paradisetravels/src/main/java/paradiseTravels/service/room" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="748" y="591"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="15" language="java" name="paradiseTravels.service.localJourney" project="paradisetravels" 
+    file="/paradisetravels/src/main/java/paradiseTravels/service/localJourney" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="766" y="832"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="16" language="java" name="paradiseTravels.service.primitiveResponse" project="paradisetravels" 
+    file="/paradisetravels/src/main/java/paradiseTravels/service/primitiveResponse" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="786" y="893"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="17" language="java" name="paradiseTravels.service.reservation" project="paradisetravels" 
+    file="/paradisetravels/src/main/java/paradiseTravels/service/reservation" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="817" y="663"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="18" language="java" name="paradiseTravels.service.offer" project="paradisetravels" 
+    file="/paradisetravels/src/main/java/paradiseTravels/service/offer" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="739" y="748"/>    
+    <display autosize="true" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <dependency id="19">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="20">    
+    <bendpoint x="498" y="383"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="21">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="22">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="23">    
+    <bendpoint x="121" y="453"/>    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="24">    
+    <bendpoint x="499" y="322"/>    
+    <bendpoint x="498" y="454"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="25">    
+    <bendpoint x="836" y="363"/>    
+    <bendpoint x="835" y="137"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="26">    
+    <bendpoint x="497" y="79"/>    
+    <bendpoint x="120" y="78"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="27">    
+    <bendpoint x="497" y="447"/>    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="28">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="29">    
+    <bendpoint x="498" y="541"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="30">    
+    <bendpoint x="835" y="229"/>    
+    <bendpoint x="834" y="138"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="31">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="32">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="33">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="34">    
+    <bendpoint x="739" y="79"/>    
+    <bendpoint x="120" y="78"/>    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="35">    
+    <bendpoint x="497" y="320"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="36">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="37">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="38">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="39">    
+    <bendpoint x="221" y="317"/>    
+    <bendpoint x="220" y="453"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="40">    
+    <bendpoint x="498" y="99"/>    
+    <bendpoint x="298" y="99"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="41">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="42">    
+    <bendpoint x="835" y="296"/>    
+    <bendpoint x="835" y="138"/>    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

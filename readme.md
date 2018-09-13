@@ -311,6 +311,30 @@ response:
 ### usunięcie oferty
 DELETE /offers/3
 
+### zakupienie oferty
+POST /offers/reserveAndPay
+
+body request:
+```json
+{
+  "offerId" : IDOFERTY,
+  "from" : "2018-08-09",
+  "to" : "2018-08-09",
+  "numberOfCustomers": 3,
+  numberOfOnePersonBed: 1,
+  numberOfTwoPersonBed: 2, 
+  localJourneyIds: [22, 33]
+}
+```
+
+response:
+```json
+{
+  "value": "url do strony z płatnościami"
+}
+```
+
+
 ### filtry ofert
 * GET /offers/search?dateFrom=2019-03-08&dateTo=2019-03-12&location=Greece&priceFrom=150&priceTo=1190
 
@@ -321,55 +345,55 @@ DELETE /offers/3
 
 # adress
 * pobranie wszystkich: GET /addresses
-* pobranie jednego: GET /addresses/<ID>
+* pobranie jednego: GET /addresses/ID
 * dodanie nowego: POST /addresses
-* edycja: PUT /addresses/<ID>
-* usunięcie: DELETE /addresses/<ID>
+* edycja: PUT /addresses/ID
+* usunięcie: DELETE /addresses/ID
 
 # hotel
 * pobranie wszystkich: GET /hotels
-* pobranie jednego: GET /hotels/<ID>
+* pobranie jednego: GET /hotels/ID
 * dodanie nowego: POST /hotels
-* edycja: PUT /hotels/<ID>
-* usunięcie: DELETE /hotels/<ID>
+* edycja: PUT /hotels/ID
+* usunięcie: DELETE /hotels/ID
 
 # wycieczki lokalne
 * pobranie wszystkich: GET /local-journeys
-* pobranie jednego: GET /local-journeys/<ID>
+* pobranie jednego: GET /local-journeys/ID
 * dodanie nowego: POST /local-journeys
-* edycja: PUT /local-journeys/<ID>
-* usunięcie: DELETE /local-journeys/<ID>
+* edycja: PUT /local-journeys/ID
+* usunięcie: DELETE /local-journeys/ID
 
 # rezerwacje
 * pobranie wszystkich: GET /reservations
-* pobranie jednego: GET /reservations/<ID>
+* pobranie jednego: GET /reservations/ID
 * dodanie nowego: POST /reservations
-* edycja: PUT /reservations/<ID>
-* usunięcie: DELETE /reservations/<ID>
+* edycja: PUT /reservations/ID
+* usunięcie: DELETE /reservations/ID
 
 
 # recenzje
 * pobranie wszystkich: GET /reviews
-* pobranie jednego: GET /reviews/<ID>
+* pobranie jednego: GET /reviews/ID
 * dodanie nowego: POST /reviews
-* edycja: PUT /reviews/<ID>
-* usunięcie: DELETE /reviews/<ID>
+* edycja: PUT /reviews/ID
+* usunięcie: DELETE /reviews/ID
 
 
 # pokoje
 * pobranie wszystkich: GET /rooms
-* pobranie jednego: GET /rooms/<ID>
+* pobranie jednego: GET /rooms/ID
 * dodanie nowego: POST /rooms
-* edycja: PUT /rooms/<ID>
-* usunięcie: DELETE /rooms/<ID>
+* edycja: PUT /rooms/ID
+* usunięcie: DELETE /rooms/ID
 
 # faktury
 
 * pobranie wszystkich: GET /invoices
-* pobranie jednego: GET /invoices/<ID>
+* pobranie jednego: GET /invoices/ID
 * dodanie nowego: POST /invoices
-* edycja: PUT /invoices/<ID>
-* usunięcie: DELETE /invoices/<ID>
+* edycja: PUT /invoices/ID
+* usunięcie: DELETE /invoices/ID
 * generowanie pdf po id faktury /invoices/{id}/pdf
 * generowanie pdf po id rezerwacji /invoices/reservation/{id}/pdf
 
@@ -389,6 +413,6 @@ DELETE /offers/3
  ```
  Status rezerwacji ustawiany jest na PAYMENT_PROCESSED.
  
- payU natomiast o transakcji powiadomi endpoint reservations/notify ktory ustawi rezerwacje na PAID razie powodzenia.
+ payU natomiast o transakcji powiadomi endpoint reservations/notify ktory ustawi rezerwacje na PAID razie powodzenia. 
  
  * GET offers/test  - testuje payU,
