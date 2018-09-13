@@ -1,4 +1,86 @@
 
+
+# instrukcja instalacji
+Do zainstalowania aplikacji potrzebujemy
+- ubuntu 18
+- git
+- maven
+- baza danych postgre 
+- java JRE
+- server wildfly 13
+
+1. instalacja JRE, git, maven
+```bash
+sudo apt install openjdk-8-jdk
+sudo apt install maven
+sudo apt install git
+```
+
+
+2. instalacja postgres
+
+```bash
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+
+sudo -u postgres psql postgres
+\password postgres
+# teraz podajemy nowe hasło do bazy danych. Dla wersji devowej najlepiej podać "qwertyqwerty". Takie hasło jest ustawione w hibernacie i nie będziemy musieli nic konfigurować.
+\q
+```
+
+3. server wildfly 13
+```bash
+cd ~
+wget http://download.jboss.org/wildfly/13.0.0.Final/wildfly-13.0.0.Final.zip
+unzip wildfly-13.0.0.Final.zip
+cd wildfly-13.0.0.Final/bin
+```
+
+Tworzenie konta administracyjnego (do panelu admina wildfly-1)
+```bash
+./add-user.sh
+``` 
+
+
+Uruchamianie serwera:
+```bash
+./standalone.sh &
+```
+Serwer będzie dostępny pod adresem `http://localhost:8080/`
+
+
+
+4. Instalacja i uruchamianie aplikacji:
+```bash
+git clone https://github.com/tomaszkowalczyk94/paradise-travels.git
+cd paradise-travels/
+mvn wildfly:deploy
+```
+
+W przeglądarce otwieramy strone  http://127.0.0.1:8080/paradiseTravels
+Jeśli wszystko poprawnie skonfigurowaliśmy zobaczymy:
+```json
+{
+    "message": "hello world",
+    "hibernateSession": true,
+    "countOfUsers": 0
+}
+```
+
+5. Tworzenie konta admina do aplikacji
+
+```bash
+sudo -u postgres psql postgres
+INSERT INTO "public"."users" ("id", "email", "firstname", "lastname", "login", "password", "role", "address_id") VALUES (DEFAULT, 'admin@admin.pl', 'admin', 'admin', 'admin', 'qwerty', '', NULL);
+\q
+```
+
+
+
+
+
+
 ![alt text](https://raw.githubusercontent.com/tomaszkowalczyk94/paradise-travels/master/doc/schemat.jpg)
 
 Adres: http://77.55.193.96:8080/paradiseTravels

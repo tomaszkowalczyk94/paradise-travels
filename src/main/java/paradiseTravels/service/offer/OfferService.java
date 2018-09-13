@@ -1,5 +1,7 @@
 package paradiseTravels.service.offer;
 
+import paradiseTravels.bean.AddressBean;
+import paradiseTravels.bean.HotelBean;
 import paradiseTravels.bean.OfferBean;
 import paradiseTravels.bean.payU.PayuBean;
 import paradiseTravels.bean.ReservationBean;
@@ -24,6 +26,12 @@ public class OfferService extends EntityService<Offer, OfferBean> {
 
     @Inject
     OfferBean offerBean;
+
+    @Inject
+    HotelBean hotelBean;
+
+    @Inject
+    AddressBean addressBean;
 
     @Inject
     ReservationBean reservationBean;
@@ -61,6 +69,24 @@ public class OfferService extends EntityService<Offer, OfferBean> {
 
 
         return offerBean.findAllWithFillters(dateFrom,dateTo,location,priceFrom,priceTo);
+    }
+
+    @POST
+    @Path("/")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Offer createNew(Offer offer) throws Exception{
+
+        if(offer.getHotel().getAddress().getId() == null) {
+            addressBean.add(offer.getHotel().getAddress());
+        }
+
+        if(offer.getHotel().getId() == null) {
+            hotelBean.add(offer.getHotel());
+        }
+
+        bean.add(offer);
+        return offer;
     }
 
 }
