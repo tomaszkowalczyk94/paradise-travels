@@ -54,21 +54,41 @@ public class UserService extends EntityService<User, UserBean>
         return primitiveBooleanResponse;
     }
 
-    @Override
-    @Path("/unsupported")
-    public List<User> getAll() throws Exception {
-        throw new Exception("Unsupported");
-    }
-
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getAll(@Context HttpServletRequest request) throws Exception {
-        User user = (User) request.getSession().getAttribute("user");
-
-        if((user == null) || !user.getRole().equals("admin")) {
-            throw new Exception("you must be logged as admin");
+        if(isAdminLogged(request)) {
+            return super.getAll();
         }
-        else return super.getAll();
+        else  throw new Exception("You are not logged as admin");
+    }
+
+
+    @DELETE
+    @Path("/{id}")
+    public void delete(@PathParam("id") int id ,@Context HttpServletRequest request) throws Exception {
+        if(isAdminLogged(request)) {
+            super.delete(id);
+        }
+        else throw new Exception("You are not logged as admin");
+    }
+
+
+    @Override
+    @Path("/unsupportedDelete")
+    public void delete(int id) throws Exception {
+        throw new Exception("Unsupported");
+    }
+
+    @Override
+    @Path("/unsupportedAll")
+    public List<User> getAll() throws Exception {
+        throw new Exception("Unsupported");
+    }
+
+    private boolean isAdminLogged(HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        return user != null && user.getRole().equals("admin");
     }
 }
