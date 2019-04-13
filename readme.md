@@ -1,4 +1,4 @@
-paradise travels - portal biura podróży (projekt studencki)
+# paradise travels - portal biura podróży (projekt studencki)
 
 # instrukcja instalacji
 Do zainstalowania aplikacji potrzebujemy
